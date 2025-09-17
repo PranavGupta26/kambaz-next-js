@@ -6,8 +6,8 @@ export default function KambazNavigation() {
       <Link href="/Account" id="wd-account-link">Account</Link><br/>
       <Link href="/Dashboard" id="wd-dashboard-link">Dashboard</Link><br/>
       <Link href="/Dashboard" id="wd-course-link">Courses</Link><br/>
-      <Link href="https://calendar.google.com/" id="wd-calendar-link">Calendar</Link><br/>
-      <Link href="https://mail.google.com/mail/u/0/#inbox" id="wd-inbox-link">Inbox</Link><br/>
+      <Link href="/Calendar" id="wd-calendar-link">Calendar</Link><br/>
+      <Link href="/inbox" id="wd-inbox-link">Inbox</Link><br/>
       <Link href="/Labs" id="wd-labs-link">Labs</Link><br/>
     </div>
 );}

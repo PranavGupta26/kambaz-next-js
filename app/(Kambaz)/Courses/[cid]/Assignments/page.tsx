@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export default function Assignments() {
   return (
     <div id="wd-assignments">
@@ -8,14 +9,7 @@ export default function Assignments() {
       <h3 id="wd-assignments-title">
         ASSIGNMENTS 40% of Total <button>+</button> </h3>
       <ul id="wd-assignment-list">
-        <li className="wd-assignment-list-item">
-          <a href="/Courses/1234/Assignments/123"
-             className="wd-assignment-link" >
-            A1 - ENV + HTML
-          </a> </li>
-        <li className="wd-assignment-list-item">
-          {/* Complete On Your Own */}
-        </li>
+       
       </ul>
     </div>
 );}
