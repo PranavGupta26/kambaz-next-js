@@ -15,6 +15,40 @@ export default function Dashboard() {
                 Full Stack software developer
               </p>
               <button> Go </button>
+              
+            </div>
+          </Link>
+          <Link href="/Courses/1359" className="wd-dashboard-course-link">
+            <Image src="/images/reactjs.jpg" width={200} height={150} alt={""} />
+            <div>
+              <h5> CS1359 React JS </h5>
+              <p className="wd-dashboard-course-title">
+                Programming Design Paradigm
+              </p>
+              <button> Go </button>
+              
+            </div>
+          </Link>
+          <Link href="/Courses/4760" className="wd-dashboard-course-link">
+            <Image src="/images/reactjs.jpg" width={200} height={150} alt={""} />
+            <div>
+              <h5> CS4760 React JS </h5>
+              <p className="wd-dashboard-course-title">
+                Cyber Security
+              </p>
+              <button> Go </button>
+              
+            </div>
+          </Link>
+          <Link href="/Courses/5100" className="wd-dashboard-course-link">
+            <Image src="/images/reactjs.jpg" width={200} height={150} alt={""} />
+            <div>
+              <h5> CS5100 React JS </h5>
+              <p className="wd-dashboard-course-title">
+                Algorithm implementation
+              </p>
+              <button> Go </button>
+              
             </div>
           </Link>
         </div>

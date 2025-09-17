@@ -10,7 +10,7 @@ export default function Modules() {
               <span className="wd-title">LEARNING OBJECTIVES</span>
               <ul className="wd-content">
                 <li className="wd-content-item">Introduction to the course</li>
-                <li className="wd-content-item">Learn what is Web Development</li>
+                <li className="wd-content-item">In depth Analysis</li>
               </ul>
             </li>
           </ul>
