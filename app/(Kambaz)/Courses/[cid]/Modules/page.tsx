@@ -4,7 +4,7 @@ export default function Modules() {
       {/* Implement Collapse All button, View Progress button, etc. */}
       <ul id="wd-modules">
         <li className="wd-module">
-          <div className="wd-title">Week 1</div>
+          <div className="wd-title">Module 1</div>
           <ul className="wd-lessons">
             <li className="wd-lesson">
               <span className="wd-title">LEARNING OBJECTIVES</span>
@@ -14,12 +14,22 @@ export default function Modules() {
               </ul>
             </li>
           </ul>
+          <div className="wd-title">Module 2</div>
+          <ul className="wd-lessons">
+            <li className="wd-lesson">
+              <span className="wd-title">LEARNING OBJECTIVES</span>
+              <ul className="wd-content">
+                <li className="wd-content-item">Higher Learning</li>
+                <li className="wd-content-item">Application</li>
+              </ul>
+            </li>
+          </ul>
         </li>
         <li className="wd-module">
-          <div className="wd-title">Week 2</div>
+          <div className="wd-title">Module 3</div>
         </li>
         <li className="wd-module">
-          <div className="wd-title">Week 3</div>
+          <div className="wd-title">Module 4</div>
         </li>
       </ul>
     </div>
