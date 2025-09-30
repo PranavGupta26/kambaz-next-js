@@ -1,118 +1,146 @@
 "use client";
+
 import Link from "next/link";
 
 export default function AddAssignment() {
   return (
     <div
       id="wd-add-assignment"
-      className="max-w-2xl mx-auto p-8 bg-white shadow-lg rounded-2xl"
+      className="max-w-2xl mx-auto p-4 bg-white shadow rounded-3"
     >
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">
-          ➕ Add New Assignment
-        </h2>
-        <Link href="/Courses/1234/Assignments">
-          <span className="text-blue-600 hover:underline cursor-pointer">
-            Back to Assignments
-          </span>
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="h4 fw-bold text-dark">➕ Add New Assignment</h2>
+        <Link href="/Courses/1234/Assignments" passHref>
+          <a className="text-primary text-decoration-underline">Back to Assignments</a>
         </Link>
       </div>
 
       {/* Form */}
-      <form className="space-y-6">
-        {/* Title */}
-        <div>
-          <label
-            className="block mb-1 font-medium text-gray-700"
-            htmlFor="title"
-          >
+      <form>
+        {/* Assignment Title */}
+        <div className="mb-3">
+          <label htmlFor="title" className="form-label">
             Assignment Title
           </label>
           <input
             id="title"
             type="text"
             placeholder="e.g. Project 1: React Components"
-            className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="form-control"
           />
         </div>
 
         {/* Due Date */}
-        <div>
-          <label
-            className="block mb-1 font-medium text-gray-700"
-            htmlFor="dueDate"
-          >
+        <div className="mb-3">
+          <label htmlFor="dueDate" className="form-label">
             Due Date
           </label>
-          <input
-            id="dueDate"
-            type="datetime-local"
-            className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          />
+          <input id="dueDate" type="datetime-local" className="form-control" />
         </div>
 
-        {/* Points */}
-        <div>
-          <label
-            className="block mb-1 font-medium text-gray-700"
-            htmlFor="points"
-          >
-            Points
+        {/* Use Bootstrap Grid for the following fields: Points, Assignment Group, Display Grade as, Submission Type, Assign */}
+        <div className="row g-3 mb-3">
+          {/* Points */}
+          <div className="col-md-4">
+            <label htmlFor="points" className="form-label">
+              Points
+            </label>
+            <input
+              id="points"
+              type="number"
+              placeholder="e.g. 100"
+              className="form-control"
+            />
+          </div>
+
+          {/* Assignment Group */}
+          <div className="col-md-8">
+            <label htmlFor="assignmentGroup" className="form-label">
+              Assignment Group
+            </label>
+            <select id="assignmentGroup" className="form-select">
+              <option value="">Select Group</option>
+              <option>Group 1</option>
+              <option>Group 2</option>
+              <option>Group 3</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="row g-3 mb-3">
+          {/* Display Grade as */}
+          <div className="col-md-6">
+            <label htmlFor="displayGradeAs" className="form-label">
+              Display Grade as
+            </label>
+            <select id="displayGradeAs" className="form-select">
+              <option value="">Select Option</option>
+              <option>Points</option>
+              <option>Percentage</option>
+              <option>Letter Grade</option>
+            </select>
+          </div>
+
+          {/* Submission Type */}
+          <div className="col-md-6">
+            <label htmlFor="submissionType" className="form-label">
+              Submission Type
+            </label>
+            <select id="submissionType" className="form-select">
+              <option value="">Select Type</option>
+              <option>Online</option>
+              <option>Offline</option>
+              <option>Both</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Assign */}
+        <div className="mb-3">
+          <label htmlFor="assign" className="form-label">
+            Assign
           </label>
-          <input
-            id="points"
-            type="number"
-            placeholder="e.g. 100"
-            className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          />
+          <select id="assign" className="form-select">
+            <option value="">Select User(s)</option>
+            <option>All Students</option>
+            <option>Group 1</option>
+            <option>Group 2</option>
+          </select>
         </div>
 
         {/* Available From */}
-        <div>
-          <label
-            className="block mb-1 font-medium text-gray-700"
-            htmlFor="availableFrom"
-          >
+        <div className="mb-3">
+          <label htmlFor="availableFrom" className="form-label">
             Available From
           </label>
-          <input
-            id="availableFrom"
-            type="date"
-            className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          />
+          <input id="availableFrom" type="date" className="form-control" />
         </div>
 
         {/* Description */}
-        <div>
-          <label
-            className="block mb-1 font-medium text-gray-700"
-            htmlFor="description"
-          >
+        <div className="mb-3">
+          <label htmlFor="description" className="form-label">
             Description
           </label>
           <textarea
             id="description"
             rows={4}
             placeholder="Enter assignment instructions..."
-            className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="form-control"
           />
         </div>
 
         {/* Buttons */}
-        <div className="flex justify-end space-x-3 pt-4">
-          <Link href="/Courses/1234/Assignments">
+        <div className="d-flex justify-content-end gap-3 pt-3">
+          <Link href="/Courses/1234/Assignments" passHref>
             <button
               type="button"
-              className="px-5 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition"
+              className="btn btn-outline-secondary"
             >
               Cancel
             </button>
           </Link>
-          <button
-            type="submit"
-            className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-          >
+          <button type="submit" className="btn btn-primary">
             Save Assignment
           </button>
         </div>

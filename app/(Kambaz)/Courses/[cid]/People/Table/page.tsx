@@ -1,64 +1,73 @@
 "use client";
-import Link from "next/link";
 
-interface Person {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-}
+import { Table } from "react-bootstrap";
+import { FaUserCircle } from "react-icons/fa";
 
-export default function PeoplePage() {
-  // Example data
-  const people: Person[] = [
-    { id: 1, name: "Pranav Gupta", email: "Pranav@example.com", role: "Student" },
-    { id: 2, name: "John Doe", email: "John@example.com", role: "Instructor" },
-    { id: 3, name: "John Doe", email: "John@example.com", role: "Student" },
-    { id: 4, name: "Dana White", email: "dana@example.com", role: "TA" },
-  ];
-
+export default function PeopleTable() {
   return (
-    <div className="max-w-5xl mx-auto p-6 bg-white shadow-lg rounded-xl">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">People</h2>
-        <Link href="/Courses/1234/Assignments">
-          <span className="text-blue-600 hover:underline cursor-pointer">Back to Assignments</span>
-        </Link>
-      </div>
-
-      {/* Table */}
-      <div className="overflow-x-auto">
-        <table className="min-w-full border border-gray-200 rounded-lg">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="px-4 py-2 text-left border-b">ID</th>
-              <th className="px-4 py-2 text-left border-b">Name</th>
-              <th className="px-4 py-2 text-left border-b">Email</th>
-              <th className="px-4 py-2 text-left border-b">Role</th>
-            </tr>
-          </thead>
-          <tbody>
-            {people.map((person) => (
-              <tr key={person.id} className="hover:bg-gray-50">
-                <td className="px-4 py-2 border-b">{person.id}</td>
-                <td className="px-4 py-2 border-b">{person.name}</td>
-                <td className="px-4 py-2 border-b">{person.email}</td>
-                <td className="px-4 py-2 border-b">{person.role}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Add Person Button */}
-      <div className="mt-4 flex justify-end">
-        <Link href="/Courses/1234/People/Add">
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-            + Add Person
-          </button>
-        </Link>
-      </div>
+    <div id="wd-people-table">
+      <Table striped>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Login ID</th>
+            <th>Section</th>
+            <th>Role</th>
+            <th>Last Activity</th>
+            <th>Total Activity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="wd-full-name text-nowrap">
+              <FaUserCircle className="me-2 fs-1 text-secondary" />
+              <span className="wd-first-name">Tony</span>{" "}
+              <span className="wd-last-name">Stark</span>
+            </td>
+            <td className="wd-login-id">001234561S</td>
+            <td className="wd-section">S101</td>
+            <td className="wd-role">STUDENT</td>
+            <td className="wd-last-activity">2020-10-01</td>
+            <td className="wd-total-activity">10:21:32</td>
+          </tr>
+          <tr>
+            <td className="wd-full-name text-nowrap">
+              <FaUserCircle className="me-2 fs-1 text-secondary" />
+              <span className="wd-first-name">Bruce</span>{" "}
+              <span className="wd-last-name">Wayne</span>
+            </td>
+            <td className="wd-login-id">00232W</td>
+            <td className="wd-section">S102</td>
+            <td className="wd-role">STUDENT</td>
+            <td className="wd-last-activity">2020-10-02</td>
+            <td className="wd-total-activity">03:15:12</td>
+          </tr>
+          <tr>
+            <td className="wd-full-name text-nowrap">
+              <FaUserCircle className="me-2 fs-1 text-secondary" />
+              <span className="wd-first-name">Steve</span>{" "}
+              <span className="wd-last-name">Rogers</span>
+            </td>
+            <td className="wd-login-id">0034R</td>
+            <td className="wd-section">S101</td>
+            <td className="wd-role">INSTRUCTOR</td>
+            <td className="wd-last-activity">2020-10-01</td>
+            <td className="wd-total-activity">05:12:55</td>
+          </tr>
+          <tr>
+            <td className="wd-full-name text-nowrap">
+              <FaUserCircle className="me-2 fs-1 text-secondary" />
+              <span className="wd-first-name">Natasha</span>{" "}
+              <span className="wd-last-name">Romanoff</span>
+            </td>
+            <td className="wd-login-id">004564R</td>
+            <td className="wd-section">S103</td>
+            <td className="wd-role">STUDENT</td>
+            <td className="wd-last-activity">2020-10-04</td>
+            <td className="wd-total-activity">01:31:21</td>
+          </tr>
+        </tbody>
+      </Table>
     </div>
   );
 }

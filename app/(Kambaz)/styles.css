@@ -1,0 +1,103 @@
+body   {
+  margin: 0;
+  padding: 0;
+}
+
+body * {
+  font-family: Arial,
+  Helvetica, sans-serif;
+}
+
+@media (min-width: 768px) {
+  #wd-kambaz .wd-main-content-offset {
+    padding-left: 140px !important;
+  }
+}
+.list-group.wd > .list-group-item.active {
+  color: black;
+  background-color: white;
+  border-left: 3px solid black !important;
+}
+/* Override Bootstrap active styles for your list-group items */
+#wd-courses-navigation .list-group-item.active {
+  background-color: white !important;    /* white background */
+  color: black !important;                /* black text */
+  border-left: 4px solid black !important; /* thick black left border */
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  font-weight: bold;
+  /* Remove default blue border on active */
+  box-shadow: none !important;
+}
+.btn-secondary {
+  --bs-btn-color: #000 !important;
+  --bs-btn-bg: #c7cdd1 !important;
+  --bs-btn-border-color: #c7cdd1 !important;
+  --bs-btn-hover-color: #fff !important;
+}
+.bg-secondary {
+  --bs-secondary-rgb: 199, 205, 209;
+}
+.list-group-item {
+  --bs-list-group-border-color: gray;
+}
+.wd-lesson {
+  border-left: 3px solid green !important;
+}
+#wd-course-status {
+  margin: 1rem auto;
+}
+
+#wd-course-status .card {
+  border: 1px solid #dee2e6;
+}
+
+#wd-course-status .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+button:active {
+  box-shadow: inset 0 0 0.2rem rgba(0, 0, 0, 0.2);
+}
+.assignmentList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.assignmentItem {
+  border: 1px solid #ddd;
+  border-left: 4px solid green;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.assignmentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.assignmentLink {
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  color: #333;
+}
+
+.assignmentDetails {
+  font-size: 14px;
+  margin-top: 4px;
+  color: #555;
+}
+
+.availability {
+  margin: 4px 0;
+}
+
+.checkIcon {
+  color: green;
+}
