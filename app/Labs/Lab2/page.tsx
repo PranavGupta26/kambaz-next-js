@@ -1,98 +1,69 @@
-import { Container } from "react-bootstrap";
-import BackgroundColors from "./BackgroundColors";
-import BootstrapGrids from "./BootstrapGrids";
-import Dimensions from "./Dimensions";
-import ForegroundColors from "./ForegroundColors";
-import "./index.css";
-import Positions from "./Positions";
-import ScreenSizeLabel from "./ScreenSizeLabel";
-import Borders from "./Borders";
-import Padding from "./Padding";
-import Margins from "./Margins";
-import Corners from "./Corners";
-import Zindex from "./Zindex";
-import Float from "./Float";
-import GridLayout from "./GridLayout";
-import Flex from "./Flex";
-import ReactIcons from "./ReactIcons";
-import BootstrapTables from "./BootstrapTables";
-import BootstrapLists from "./BootstrapLists";
-import BootstrapForms from "./BootstrapForms";
-import BootstrapNavigation from "./BootstrapNavigation";
-export default function Lab2() {
+import React from "react";
+
+export default function Positions() {
   return (
-    <Container fluid>
-    <div id="wd-lab2">
-      <h2>Lab 2 - Cascading Style Sheets</h2>
-      <ScreenSizeLabel/>
-      <BootstrapGrids/>
-      <BootstrapLists/>
-      <BootstrapForms/>
-      <BootstrapNavigation/>
-      <Corners />
-      <Zindex />
-      <Borders />
-      <GridLayout />
-      <Margins />
-      <Padding />
-      <Float />
-      <Flex />
-      <ReactIcons />
-      <BootstrapTables />
-      <Positions/>
-      <Dimensions/>
-      <h3>Styling with the STYLE attribute</h3>
-      <p style={{ backgroundColor: "blue", color: "white" }}>
-        Style attribute allows configuring look and feel
-        right on the element. Although it's very convenient
-        it is considered bad practice and you should avoid
-        using the style attribute</p>
-        <ForegroundColors/>
-        <BackgroundColors/>
-        <div id="wd-css-id-selectors">
-        <h3>ID selectors</h3>
-        <p id="wd-id-selector-1">
-Instead of changing the look and feel of all the 
-elements of the same name, e.g., P, we can refer to a specific element by its ID
-        </p>
-        <p id="wd-id-selector-2">
-Here's another paragraph using a different ID and a different look and
-          feel
-        </p>
+    <>
+      <div id="wd-css-position-absolute">
+        <h2>Absolute position</h2>
+        <div className="wd-bg-color-gray">
+          <div className="wd-pos-relative">
+            <div className="wd-pos-absolute-10-10 wd-bg-color-yellow wd-dimension-portrait">
+              Portrait
+            </div>
+            <div className="wd-pos-absolute-50-50 wd-bg-color-blue wd-fg-color-white wd-dimension-landscape">
+              Landscape
+            </div>
+            <div className="wd-pos-absolute-120-20 wd-bg-color-red wd-dimension-square">
+              Square
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
-          <div id="wd-css-class-selectors">
-      <h3>Class selectors</h3>
 
-      <p className="wd-class-selector">
-    Instead of using IDs to refer to elements, you can use an element's CLASS attribute
-      </p>
-
-      <h4 className="wd-class-selector">
-    This heading has same style as paragraph above
-      </h4>
-
-    </div>
-    <div id="wd-css-document-structure">
-      <div className="wd-selector-1">
-        <h3>Document structure selectors</h3>
-        <div className="wd-selector-2">
-          Selectors can be combined to refer elements in particular
-          places in the document
-          <p className="wd-selector-3">
-            This paragraph's red background is referenced as
-            <br />
-            .selector-2 .selector3<br />
-            meaning the descendant of some ancestor.<br />
-            <span className="wd-selector-4">
-              Whereas this span is a direct child of its parent
-            </span><br />
-              You can combine these relationships to create specific 
-              styles depending on the document structure
-          </p>
+      <div id="wd-css-position-relative">
+        <h2>Relative</h2>
+        <div className="wd-bg-color-gray">
+          <div className="wd-bg-color-yellow wd-dimension-portrait">
+            <div className="wd-pos-relative-nudge-down-right">Portrait</div>
+          </div>
+          <div className="wd-pos-relative-nudge-up-right wd-bg-color-blue wd-fg-color-white wd-dimension-landscape">
+            Landscape
+          </div>
+          <div className="wd-bg-color-red wd-dimension-square">Square</div>
         </div>
       </div>
-    </div>
-    </div> 
-    </Container>);
-    
-    }
+
+      <div id="wd-css-position-fixed">
+        <h2>Fixed position</h2>
+        Checkout the blue square that says &quot;Fixed position&quot; stuck all
+        the way on the right and half way down the page. It doesn&apos;t scroll
+        with the rest of the page. Its position is &quot;Fixed&quot;.
+        <div className="wd-pos-fixed wd-dimension-square wd-bg-color-blue wd-fg-color-white">
+          Fixed position
+        </div>
+      </div>
+
+      <div id="wd-css-position-relative">
+        <h2>Relative</h2>
+        <div className="wd-bg-color-gray">
+          <div className="wd-bg-color-yellow wd-dimension-portrait">
+            <div className="wd-bg-color-red wd-pos-relative-nudge-down-right">
+              Portrait
+            </div>
+          </div>
+          <div className="wd-pos-relative-nudge-up-right wd-bg-color-blue wd-fg-color-white wd-dimension-landscape">
+            Landscape
+          </div>
+          <div className="wd-bg-color-red wd-dimension-square">Square</div>
+        </div>
+      </div>
+    </>
+  );
+}
