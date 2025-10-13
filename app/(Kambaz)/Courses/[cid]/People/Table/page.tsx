@@ -6,13 +6,37 @@ import { FaUserCircle } from "react-icons/fa";
 import { useParams } from "next/navigation";
 
 // ✅ Import JSON files directly
-import users from "../../../../Database/users.json";
-import enrollments from "../../../../Database/enrollments.json";
+import usersData from "../../../../Database/users.json";
+import enrollmentsData from "../../../../Database/enrollments.json";
+
+// ✅ Define TypeScript interfaces for data
+interface User {
+  _id: string;
+  username: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  dob: string;
+  role: string;
+  loginId: string;
+  section: string;
+  lastActivity: string;
+  totalActivity: string;
+}
+
+interface Enrollment {
+  _id: string;
+  user: string;
+  course: string;
+}
 
 export default function PeopleTable() {
-  const { cid } = useParams(); // get course ID from URL
+  const { cid } = useParams<{ cid: string }>(); // ✅ typed course ID
+  const users = usersData as User[];
+  const enrollments = enrollmentsData as Enrollment[];
 
-  // Filter users enrolled in this course
+  // ✅ Filter users enrolled in this course
   const courseUsers = users.filter((usr) =>
     enrollments.some(
       (enr) => enr.user === usr._id && enr.course === cid
@@ -33,7 +57,7 @@ export default function PeopleTable() {
           </tr>
         </thead>
         <tbody>
-          {courseUsers.map((user: any) => (
+          {courseUsers.map((user) => (
             <tr key={user._id}>
               <td className="wd-full-name text-nowrap">
                 <FaUserCircle className="me-2 fs-1 text-secondary" />

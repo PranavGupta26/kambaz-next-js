@@ -4,8 +4,19 @@ import Link from "next/link";
 import { Row, Col, Card, Button } from "react-bootstrap";
 import * as db from "../Database"; // ✅ Import courses from your local database
 
+// ✅ Define the Course interface
+interface Course {
+  _id: string;
+  name: string;
+  number: string;
+  startDate: string;
+  endDate: string;
+  image?: string; // optional field
+  description?: string; // optional field
+}
+
 export default function Dashboard() {
-  const courses = db.courses; // ✅ Dynamically load all courses
+  const courses = db.courses as Course[]; // ✅ Cast to Course[]
 
   return (
     <div id="wd-dashboard">
@@ -32,7 +43,7 @@ export default function Dashboard() {
                 >
                   <Card.Img
                     variant="top"
-                    src={(course as any).image ?? "/images/reactjs.jpg"}
+                    src={course.image ?? "/images/reactjs.jpg"} // ✅ no more "any"
                     style={{ width: "100%", height: 160 }}
                   />
                   <Card.Body>
@@ -43,7 +54,7 @@ export default function Dashboard() {
                       className="wd-dashboard-course-description overflow-hidden"
                       style={{ height: "100px" }}
                     >
-                      {course.description}
+                      {course.description || "No description available."}
                     </Card.Text>
                     <Button variant="primary">Go</Button>
                   </Card.Body>
