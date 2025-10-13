@@ -1,8 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import { useParams } from "next/navigation";
+import assignmentsData from "../../../../Database/assignments.json"; // ✅ Import JSON database
 
 export default function AddAssignment() {
+  const { cid } = useParams(); // Get course ID from URL
+
+  // Optional: get existing assignments for this course
+  const courseAssignments = assignmentsData.filter((a) => a.course === cid);
+
   return (
     <div
       id="wd-add-assignment"
@@ -11,8 +18,11 @@ export default function AddAssignment() {
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2 className="h4 fw-bold text-dark">➕ Add New Assignment</h2>
-        <Link href="/Courses/1234/Assignments" passHref>
-          <a className="text-primary text-decoration-underline">Back to Assignments</a>
+        <Link
+          href={`/Courses/${cid}/Assignments`}
+          className="text-primary text-decoration-underline"
+        >
+          Back to Assignments
         </Link>
       </div>
 
@@ -39,9 +49,8 @@ export default function AddAssignment() {
           <input id="dueDate" type="datetime-local" className="form-control" />
         </div>
 
-        {/* Use Bootstrap Grid for the following fields: Points, Assignment Group, Display Grade as, Submission Type, Assign */}
+        {/* Points and Assignment Group */}
         <div className="row g-3 mb-3">
-          {/* Points */}
           <div className="col-md-4">
             <label htmlFor="points" className="form-label">
               Points
@@ -54,7 +63,6 @@ export default function AddAssignment() {
             />
           </div>
 
-          {/* Assignment Group */}
           <div className="col-md-8">
             <label htmlFor="assignmentGroup" className="form-label">
               Assignment Group
@@ -68,8 +76,8 @@ export default function AddAssignment() {
           </div>
         </div>
 
+        {/* Display Grade and Submission Type */}
         <div className="row g-3 mb-3">
-          {/* Display Grade as */}
           <div className="col-md-6">
             <label htmlFor="displayGradeAs" className="form-label">
               Display Grade as
@@ -82,7 +90,6 @@ export default function AddAssignment() {
             </select>
           </div>
 
-          {/* Submission Type */}
           <div className="col-md-6">
             <label htmlFor="submissionType" className="form-label">
               Submission Type
@@ -132,17 +139,16 @@ export default function AddAssignment() {
 
         {/* Buttons */}
         <div className="d-flex justify-content-end gap-3 pt-3">
-          <Link href="/Courses/1234/Assignments" passHref>
-            <button
-              type="button"
-              className="btn btn-outline-secondary"
-            >
+          <Link href={`/Courses/${cid}/Assignments`}>
+            <button type="button" className="btn btn-outline-secondary">
               Cancel
             </button>
           </Link>
-          <button type="submit" className="btn btn-primary">
-            Save Assignment
-          </button>
+          <Link href={`/Courses/${cid}/Assignments`}>
+            <button type="submit" className="btn btn-primary">
+              Save Assignment
+            </button>
+          </Link>
         </div>
       </form>
     </div>

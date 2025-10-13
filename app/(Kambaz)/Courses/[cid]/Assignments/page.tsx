@@ -9,70 +9,18 @@ import {
   FaFileAlt,
 } from "react-icons/fa";
 import { IoEllipsisVertical } from "react-icons/io5";
+import { useParams } from "next/navigation";
 
 import ModuleControlButtons from "../Modules/ModuleControlButtons";
 import GreenCheckmark from "../Modules/GreenCheckmark";
-
-const assignments = [
-  {
-    id: 123,
-    title: "A1 - ENV + HTML",
-    available: "May 6 at 12:00am",
-    due: "May 13 at 11:59pm",
-    points: 100,
-    link: "/Courses/1234/Assignments/123",
-  },
-  {
-    id: 124,
-    title: "A2 - CSS",
-    available: "May 13 at 12:00am",
-    due: "May 20 at 11:59pm",
-    points: 100,
-    link: "/Courses/1234/Assignments/124",
-  },
-  {
-    id: 125,
-    title: "A3 - JavaScript",
-    available: "May 20 at 12:00am",
-    due: "May 27 at 11:59pm",
-    points: 100,
-    link: "/Courses/1234/Assignments/125",
-  },
-  {
-    id: 126,
-    title: "A4 - React Basics",
-    available: "Jun 1 at 12:00am",
-    due: "Jun 7 at 11:59pm",
-    points: 100,
-    link: "/Courses/1234/Assignments/126",
-  },
-  {
-    id: 127,
-    title: "A5 - State Management",
-    available: "Jun 8 at 12:00am",
-    due: "Jun 14 at 11:59pm",
-    points: 100,
-    link: "/Courses/1234/Assignments/127",
-  },
-  {
-    id: 128,
-    title: "A6 - APIs & Fetch",
-    available: "Jun 15 at 12:00am",
-    due: "Jun 21 at 11:59pm",
-    points: 100,
-    link: "/Courses/1234/Assignments/128",
-  },
-  {
-    id: 129,
-    title: "A7 - Deployment",
-    available: "Jun 22 at 12:00am",
-    due: "Jun 28 at 11:59pm",
-    points: 100,
-    link: "/Courses/1234/Assignments/129",
-  },
-];
+import { assignments } from "../../../Database"; // ✅ correct import
 
 export default function Assignments() {
+  const { cid } = useParams(); // ✅ dynamically get course ID from URL
+
+  // ✅ Filter assignments that belong to the current course
+  const courseAssignments = assignments.filter(a => a.course === cid);
+
   return (
     <div id="wd-assignments" className="p-4">
       {/* Search bar and buttons */}
@@ -93,7 +41,8 @@ export default function Assignments() {
         {/* Buttons */}
         <div className="d-flex gap-2">
           <button className="btn btn-light border">+ Group</button>
-          <Link href="/Courses/1234/Assignments/Add">
+          {/* ✅ Dynamic Add Assignment link */}
+          <Link href={`/Courses/${cid}/Assignments/Add`}>
             <button className="btn btn-danger">+ Assignment</button>
           </Link>
         </div>
@@ -114,11 +63,11 @@ export default function Assignments() {
           </div>
         </div>
 
-        {/* Assignment Items */}
+        {/* ✅ Assignment Items */}
         <ListGroup className="rounded-0">
-          {assignments.map((assignment, idx) => (
+          {courseAssignments.map((assignment, idx) => (
             <ListGroupItem
-              key={assignment.id}
+              key={assignment._id} // ✅ use _id instead of id
               className="d-flex justify-content-between align-items-center px-3 py-3 border-bottom border-gray"
               style={{
                 borderLeft: "4px solid green", // only left border green
@@ -128,8 +77,9 @@ export default function Assignments() {
               <div className="d-flex flex-column">
                 <div className="d-flex align-items-center mb-1">
                   <FaFileAlt className="me-2 text-secondary" />
+                  {/* ✅ Construct the link dynamically using course + assignment IDs */}
                   <Link
-                    href={assignment.link}
+                    href={`/Courses/${cid}/Assignments/${assignment._id}`}
                     className="fw-bold text-dark text-decoration-none"
                   >
                     {assignment.title.split(" - ")[0]}
