@@ -1,12 +1,11 @@
 export default function SimpleArrays() {
-  let functionScoped = 2; // ✅ replaced var with let
-  const blockScoped = 5;  // ✅ use const (since it’s not reassigned)
+  const functionScoped = 2; // ✅ const, not reassigned
+  const blockScoped = 5;    // ✅ const
   const constant1 = functionScoped - blockScoped;
 
-  const numberArray1 = [1, 2, 3, 4, 5]; // ✅ const
-  const stringArray1 = ["string1", "string2"]; // ✅ const
+  const numberArray1 = [1, 2, 3, 4, 5];
+  const stringArray1 = ["string1", "string2"];
 
-  // ✅ add key prop to each JSX element in the array
   const htmlArray1 = [
     <li key="1">Buy milk</li>,
     <li key="2">Feed the pets</li>,
