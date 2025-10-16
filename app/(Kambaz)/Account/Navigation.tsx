@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Button } from "react-bootstrap";
 
 export default function AccountNavigation() {
+  const username = "alice"; // could be dynamic in the future
+
   return (
     <div id="wd-account-navigation" className="container mt-4">
       <h5 className="mb-3">Account Navigation</h5>
@@ -14,7 +16,7 @@ export default function AccountNavigation() {
         <Link href="/Account/Signup" passHref>
           <Button variant="secondary" className="w-100">Signup</Button>
         </Link>
-        <Link href="/Account/Profile" passHref>
+        <Link href={`/Account/Profile/${username}`} passHref>
           <Button variant="outline-dark" className="w-100">Profile</Button>
         </Link>
       </div>

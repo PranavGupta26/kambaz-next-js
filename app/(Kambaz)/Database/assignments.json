@@ -1,4 +1,5 @@
 [
+
   {
     "_id": "A101",
     "title": "Propulsion Assignment - ENV + HTML",
@@ -24,8 +25,65 @@
     "course": "RS101"
   },
   {
+    "_id": "A104",
+    "title": "Rocket Fuel Analysis",
+    "available": "May 27 at 12:00am",
+    "due": "Jun 3 at 11:59pm",
+    "points": 100,
+    "course": "RS101"
+  },
+  {
+    "_id": "A105",
+    "title": "Thrust Calculations Lab",
+    "available": "Jun 3 at 12:00am",
+    "due": "Jun 10 at 11:59pm",
+    "points": 100,
+    "course": "RS101"
+  },
+  {
+    "_id": "A106",
+    "title": "Engine Types Report",
+    "available": "Jun 10 at 12:00am",
+    "due": "Jun 17 at 11:59pm",
+    "points": 100,
+    "course": "RS101"
+  },
+  {
+    "_id": "A107",
+    "title": "Combustion Efficiency Analysis",
+    "available": "Jun 17 at 12:00am",
+    "due": "Jun 24 at 11:59pm",
+    "points": 100,
+    "course": "RS101"
+  },
+  {
+    "_id": "A108",
+    "title": "Rocket Engine Design Proposal",
+    "available": "Jun 24 at 12:00am",
+    "due": "Jul 1 at 11:59pm",
+    "points": 100,
+    "course": "RS101"
+  },
+  {
+    "_id": "A109",
+    "title": "Thermodynamics Assignment",
+    "available": "Jul 1 at 12:00am",
+    "due": "Jul 8 at 11:59pm",
+    "points": 100,
+    "course": "RS101"
+  },
+  {
+    "_id": "A110",
+    "title": "Final Rocket Propulsion Lab",
+    "available": "Jul 8 at 12:00am",
+    "due": "Jul 15 at 11:59pm",
+    "points": 100,
+    "course": "RS101"
+  },
+
+  {
     "_id": "A201",
-    "title": "Aerodynamics Quiz - React Basics",
+    "title": "Aerodynamics Quiz - Lift & Drag",
     "available": "Jun 1 at 12:00am",
     "due": "Jun 7 at 11:59pm",
     "points": 100,
@@ -33,7 +91,7 @@
   },
   {
     "_id": "A202",
-    "title": "Flow Analysis - State Management",
+    "title": "Flow Analysis Lab",
     "available": "Jun 8 at 12:00am",
     "due": "Jun 14 at 11:59pm",
     "points": 100,
@@ -41,15 +99,72 @@
   },
   {
     "_id": "A203",
-    "title": "Heating Analysis - APIs & Fetch",
+    "title": "Subsonic & Supersonic Flow Simulation",
     "available": "Jun 15 at 12:00am",
     "due": "Jun 21 at 11:59pm",
     "points": 100,
     "course": "RS102"
   },
   {
+    "_id": "A204",
+    "title": "Wind Tunnel Report",
+    "available": "Jun 22 at 12:00am",
+    "due": "Jun 28 at 11:59pm",
+    "points": 100,
+    "course": "RS102"
+  },
+  {
+    "_id": "A205",
+    "title": "Aerodynamic Heating Assignment",
+    "available": "Jun 29 at 12:00am",
+    "due": "Jul 5 at 11:59pm",
+    "points": 100,
+    "course": "RS102"
+  },
+  {
+    "_id": "A206",
+    "title": "Airfoil Design Project",
+    "available": "Jul 6 at 12:00am",
+    "due": "Jul 12 at 11:59pm",
+    "points": 100,
+    "course": "RS102"
+  },
+  {
+    "_id": "A207",
+    "title": "Lift & Drag Optimization Lab",
+    "available": "Jul 13 at 12:00am",
+    "due": "Jul 19 at 11:59pm",
+    "points": 100,
+    "course": "RS102"
+  },
+  {
+    "_id": "A208",
+    "title": "Flow Visualization Exercise",
+    "available": "Jul 20 at 12:00am",
+    "due": "Jul 26 at 11:59pm",
+    "points": 100,
+    "course": "RS102"
+  },
+  {
+    "_id": "A209",
+    "title": "Drag Reduction Project",
+    "available": "Jul 27 at 12:00am",
+    "due": "Aug 2 at 11:59pm",
+    "points": 100,
+    "course": "RS102"
+  },
+  {
+    "_id": "A210",
+    "title": "Final Aerodynamics Exam",
+    "available": "Aug 3 at 12:00am",
+    "due": "Aug 9 at 11:59pm",
+    "points": 100,
+    "course": "RS102"
+  },
+
+  {
     "_id": "A301",
-    "title": "Structural Design Task - Deployment",
+    "title": "Structural Design Task",
     "available": "Jun 22 at 12:00am",
     "due": "Jun 28 at 11:59pm",
     "points": 100,
@@ -57,7 +172,7 @@
   },
   {
     "_id": "A302",
-    "title": "Orbital Calculations - Advanced Topics",
+    "title": "Orbital Mechanics Calculations",
     "available": "Jun 29 at 12:00am",
     "due": "Jul 5 at 11:59pm",
     "points": 100,
@@ -65,10 +180,147 @@
   },
   {
     "_id": "A303",
-    "title": "Systems Engineering Exam - Final Project",
+    "title": "Spacecraft Systems Lab",
     "available": "Jul 6 at 12:00am",
     "due": "Jul 12 at 11:59pm",
     "points": 100,
     "course": "RS103"
+  },
+  {
+    "_id": "A304",
+    "title": "Payload Integration Assignment",
+    "available": "Jul 13 at 12:00am",
+    "due": "Jul 19 at 11:59pm",
+    "points": 100,
+    "course": "RS103"
+  },
+  {
+    "_id": "A305",
+    "title": "Thermal Control Lab",
+    "available": "Jul 20 at 12:00am",
+    "due": "Jul 26 at 11:59pm",
+    "points": 100,
+    "course": "RS103"
+  },
+  {
+    "_id": "A306",
+    "title": "Subsystem Integration Exercise",
+    "available": "Jul 27 at 12:00am",
+    "due": "Aug 2 at 11:59pm",
+    "points": 100,
+    "course": "RS103"
+  },
+  {
+    "_id": "A307",
+    "title": "Propulsion System Lab",
+    "available": "Aug 3 at 12:00am",
+    "due": "Aug 9 at 11:59pm",
+    "points": 100,
+    "course": "RS103"
+  },
+  {
+    "_id": "A308",
+    "title": "Mission Planning Project",
+    "available": "Aug 10 at 12:00am",
+    "due": "Aug 16 at 11:59pm",
+    "points": 100,
+    "course": "RS103"
+  },
+  {
+    "_id": "A309",
+    "title": "Systems Engineering Report",
+    "available": "Aug 17 at 12:00am",
+    "due": "Aug 23 at 11:59pm",
+    "points": 100,
+    "course": "RS103"
+  },
+  {
+    "_id": "A310",
+    "title": "Final Spacecraft Design Exam",
+    "available": "Aug 24 at 12:00am",
+    "due": "Aug 30 at 11:59pm",
+    "points": 100,
+    "course": "RS103"
+  },
+
+  {
+    "_id": "A401",
+    "title": "Hydrocarbons Lab",
+    "available": "Jan 10 at 12:00am",
+    "due": "Jan 17 at 11:59pm",
+    "points": 100,
+    "course": "RS104"
+  },
+  {
+    "_id": "A402",
+    "title": "Functional Groups Assignment",
+    "available": "Jan 18 at 12:00am",
+    "due": "Jan 25 at 11:59pm",
+    "points": 100,
+    "course": "RS104"
+  },
+  {
+    "_id": "A403",
+    "title": "Stereochemistry Lab",
+    "available": "Jan 26 at 12:00am",
+    "due": "Feb 2 at 11:59pm",
+    "points": 100,
+    "course": "RS104"
+  },
+  {
+    "_id": "A404",
+    "title": "Organic Synthesis Exercise",
+    "available": "Feb 3 at 12:00am",
+    "due": "Feb 10 at 11:59pm",
+    "points": 100,
+    "course": "RS104"
+  },
+  {
+    "_id": "A405",
+    "title": "Spectroscopy Assignment",
+    "available": "Feb 11 at 12:00am",
+    "due": "Feb 18 at 11:59pm",
+    "points": 100,
+    "course": "RS104"
+  },
+  {
+    "_id": "A406",
+    "title": "Reaction Mechanisms Lab",
+    "available": "Feb 19 at 12:00am",
+    "due": "Feb 26 at 11:59pm",
+    "points": 100,
+    "course": "RS104"
+  },
+  {
+    "_id": "A407",
+    "title": "Organic Chemistry Report",
+    "available": "Feb 27 at 12:00am",
+    "due": "Mar 5 at 11:59pm",
+    "points": 100,
+    "course": "RS104"
+  },
+  {
+    "_id": "A408",
+    "title": "Synthesis Optimization Lab",
+    "available": "Mar 6 at 12:00am",
+    "due": "Mar 13 at 11:59pm",
+    "points": 100,
+    "course": "RS104"
+  },
+  {
+    "_id": "A409",
+    "title": "Functional Group Analysis",
+    "available": "Mar 14 at 12:00am",
+    "due": "Mar 21 at 11:59pm",
+    "points": 100,
+    "course": "RS104"
+  },
+  {
+    "_id": "A410",
+    "title": "Final Organic Chemistry Lab",
+    "available": "Mar 22 at 12:00am",
+    "due": "Mar 29 at 11:59pm",
+    "points": 100,
+    "course": "RS104"
   }
 ]

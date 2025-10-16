@@ -5,24 +5,9 @@
     "description": "Basic principles of rocket propulsion and rocket engines.",
     "course": "RS101",
     "lessons": [
-      {
-        "_id": "L101",
-        "name": "History of Rocketry",
-        "description": "A brief history of rocketry and space exploration.",
-        "module": "M101"
-      },
-      {
-        "_id": "L102",
-        "name": "Rocket Propulsion Fundamentals",
-        "description": "Basic principles of rocket propulsion.",
-        "module": "M101"
-      },
-      {
-        "_id": "L103",
-        "name": "Rocket Engine Types",
-        "description": "Overview of different types of rocket engines.",
-        "module": "M101"
-      }
+      {"_id": "L101", "name": "History of Rocketry", "description": "A brief history of rocketry and space exploration.", "module": "M101"},
+      {"_id": "L102", "name": "Rocket Propulsion Fundamentals", "description": "Basic principles of rocket propulsion.", "module": "M101"},
+      {"_id": "L103", "name": "Rocket Engine Types", "description": "Overview of different types of rocket engines.", "module": "M101"}
     ]
   },
   {
@@ -31,24 +16,11 @@
     "description": "Understanding rocket fuel, combustion processes, and efficiency.",
     "course": "RS101",
     "lessons": [
-      {
-        "_id": "L201",
-        "name": "Rocket Fuel",
-        "description": "Overview of different types of rocket fuels.",
-        "module": "M102"
-      },
-      {
-        "_id": "L202",
-        "name": "Combustion Processes",
-        "description": "Understanding combustion processes and efficiency.",
-        "module": "M102"
-      },
-      {
-        "_id": "L203",
-        "name": "Combustion Instability",
-        "description": "Understanding combustion instability and mitigation.",
-        "module": "M102"
-      }
+      {"_id": "L201", "name": "Rocket Fuel", "description": "Overview of different types of rocket fuels.", "module": "M102"},
+      {"_id": "L202", "name": "Combustion Processes", "description": "Understanding combustion processes and efficiency.", "module": "M102"},
+      {"_id": "L203", "name": "Combustion Instability", "description": "Understanding combustion instability and mitigation.", "module": "M102"},
+      {"_id": "L204", "name": "Liquid vs Solid Propellants", "description": "Comparing liquid and solid rocket propellants.", "module": "M102"},
+      {"_id": "L205", "name": "Hybrid Propellants", "description": "Exploring hybrid propellant combinations.", "module": "M102"}
     ]
   },
   {
@@ -57,60 +29,726 @@
     "description": "Principles of rocket nozzle design and performance optimization.",
     "course": "RS101",
     "lessons": [
-      {
-        "_id": "L301",
-        "name": "Nozzle Design",
-        "description": "Overview of different types of rocket nozzles.",
-        "module": "M103"
-      },
-      {
-        "_id": "L302",
-        "name": "Nozzle Performance",
-        "description": "Understanding nozzle performance and efficiency.",
-        "module": "M103"
-      },
-      {
-        "_id": "L303",
-        "name": "Nozzle Optimization",
-        "description": "Optimizing nozzle design for specific applications.",
-        "module": "M103"
-      }
+      {"_id": "L301", "name": "Nozzle Design", "description": "Overview of different types of rocket nozzles.", "module": "M103"},
+      {"_id": "L302", "name": "Nozzle Performance", "description": "Understanding nozzle performance and efficiency.", "module": "M103"},
+      {"_id": "L303", "name": "Nozzle Optimization", "description": "Optimizing nozzle design for specific applications.", "module": "M103"},
+      {"_id": "L304", "name": "Thrust Vectoring", "description": "How nozzle design affects rocket trajectory.", "module": "M103"},
+      {"_id": "L305", "name": "Nozzle Materials", "description": "Materials used for nozzle construction and heat resistance.", "module": "M103"}
+    ]
+  },
+  {
+    "_id": "M104",
+    "name": "Rocket Guidance Systems",
+    "description": "Introduction to guidance, navigation, and control of rockets.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L401", "name": "Introduction to Guidance", "description": "Basic principles of rocket guidance.", "module": "M104"},
+      {"_id": "L402", "name": "Navigation Systems", "description": "Understanding inertial and GPS navigation.", "module": "M104"},
+      {"_id": "L403", "name": "Control Mechanisms", "description": "Using fins, gimbals, and thrusters for control.", "module": "M104"}
     ]
   },
   {
     "_id": "M201",
     "name": "Fundamentals of Aerodynamics",
     "description": "Basic aerodynamic concepts and fluid dynamics principles.",
-    "course": "RS102"
+    "course": "RS102",
+    "lessons": [
+      {"_id": "L501", "name": "Aerodynamic Forces", "description": "Lift, drag, and thrust explained.", "module": "M201"},
+      {"_id": "L502", "name": "Flow Dynamics", "description": "Laminar and turbulent flow.", "module": "M201"},
+      {"_id": "L503", "name": "Airfoil Design", "description": "How shape affects lift and drag.", "module": "M201"}
+    ]
   },
   {
     "_id": "M202",
     "name": "Subsonic and Supersonic Flow",
     "description": "Understanding subsonic and supersonic aerodynamic behaviors.",
-    "course": "RS102"
+    "course": "RS102",
+    "lessons": [
+      {"_id": "L601", "name": "Subsonic Flow", "description": "Flow at speeds below the speed of sound.", "module": "M202"},
+      {"_id": "L602", "name": "Supersonic Flow", "description": "Flow at speeds above the speed of sound.", "module": "M202"},
+      {"_id": "L603", "name": "Shock Waves", "description": "Understanding shock waves and expansion fans.", "module": "M202"},
+      {"_id": "L604", "name": "Compressibility Effects", "description": "Effects of compressibility on aircraft performance.", "module": "M202"}
+    ]
   },
   {
     "_id": "M203",
     "name": "Aerodynamic Heating",
     "description": "Study of aerodynamic heating and thermal protection systems.",
-    "course": "RS102"
+    "course": "RS102",
+    "lessons": [
+      {"_id": "L701", "name": "Heat Transfer", "description": "Mechanisms of heat transfer during flight.", "module": "M203"},
+      {"_id": "L702", "name": "Thermal Protection Materials", "description": "Materials used for heat shields.", "module": "M203"},
+      {"_id": "L703", "name": "Re-entry Heating", "description": "Aerothermal challenges during re-entry.", "module": "M203"}
+    ]
+  },
+  {
+    "_id": "M204",
+    "name": "Advanced Aerodynamics",
+    "description": "Advanced topics in aerodynamics for spacecraft and missiles.",
+    "course": "RS102",
+    "lessons": [
+      {"_id": "L801", "name": "High-speed Aerodynamics", "description": "Hypersonic and transonic flows.", "module": "M204"},
+      {"_id": "L802", "name": "Wind Tunnel Testing", "description": "Methods for testing aerodynamic models.", "module": "M204"},
+      {"_id": "L803", "name": "Computational Fluid Dynamics", "description": "Simulating airflow with CFD.", "module": "M204"}
+    ]
   },
   {
     "_id": "M301",
     "name": "Spacecraft Structural Design",
     "description": "Fundamentals of designing spacecraft structures and materials selection.",
-    "course": "RS103"
+    "course": "RS103",
+    "lessons": [
+      {"_id": "L901", "name": "Spacecraft Materials", "description": "Lightweight and strong materials.", "module": "M301"},
+      {"_id": "L902", "name": "Structural Loads", "description": "Understanding stresses and forces in orbit.", "module": "M301"},
+      {"_id": "L903", "name": "Vibration Analysis", "description": "Ensuring structural integrity under vibrations.", "module": "M301"}
+    ]
   },
   {
     "_id": "M302",
     "name": "Orbital Mechanics",
     "description": "Understanding orbital dynamics and mission planning.",
-    "course": "RS103"
+    "course": "RS103",
+    "lessons": [
+      {"_id": "L1001", "name": "Kepler's Laws", "description": "Orbital motion explained.", "module": "M302"},
+      {"_id": "L1002", "name": "Hohmann Transfer", "description": "Efficient orbit transfers.", "module": "M302"},
+      {"_id": "L1003", "name": "Orbit Perturbations", "description": "Effects of gravitational perturbations.", "module": "M302"}
+    ]
   },
   {
     "_id": "M303",
     "name": "Spacecraft Systems Engineering",
     "description": "Overview of spacecraft systems and subsystems engineering.",
-    "course": "RS103"
+    "course": "RS103",
+    "lessons": [
+      {"_id": "L1101", "name": "Power Systems", "description": "Solar panels, batteries, and power distribution.", "module": "M303"},
+      {"_id": "L1102", "name": "Thermal Systems", "description": "Maintaining spacecraft temperature.", "module": "M303"},
+      {"_id": "L1103", "name": "Attitude Control", "description": "Using reaction wheels and thrusters for orientation.", "module": "M303"},
+      {"_id": "L1104", "name": "Communication Systems", "description": "Satellite communication and telemetry.", "module": "M303"}
+    ]
+  },
+  
+  {
+    "_id": "M401",
+    "name": "Introduction to Organic Chemistry",
+    "description": "Overview of organic compounds, molecular structure, and bonding.",
+    "course": "RS104",
+    "lessons": [
+      {"_id": "L4001", "name": "Hydrocarbons", "description": "Study of alkanes, alkenes, and alkynes.", "module": "M401"},
+      {"_id": "L4002", "name": "Functional Groups", "description": "Introduction to alcohols, ketones, aldehydes, etc.", "module": "M401"},
+      {"_id": "L4003", "name": "Stereochemistry", "description": "Chirality, enantiomers, and diastereomers.", "module": "M401"}
+    ]
+  },
+  {
+    "_id": "M402",
+    "name": "Organic Reactions and Mechanisms",
+    "description": "In-depth exploration of organic reactions.",
+    "course": "RS104",
+    "lessons": [
+      {"_id": "L4011", "name": "Substitution Reactions", "description": "SN1 and SN2 reactions.", "module": "M402"},
+      {"_id": "L4012", "name": "Elimination Reactions", "description": "E1 and E2 mechanisms.", "module": "M402"},
+      {"_id": "L4013", "name": "Addition Reactions", "description": "Addition to alkenes and alkynes.", "module": "M402"}
+    ]
+  },
+  {
+    "_id": "M403",
+    "name": "Aromatic Compounds",
+    "description": "Study of benzene and its derivatives.",
+    "course": "RS104",
+    "lessons": [
+      {"_id": "L4021", "name": "Benzene Structure", "description": "Delocalized pi-electron system.", "module": "M403"},
+      {"_id": "L4022", "name": "Electrophilic Aromatic Substitution", "description": "Nitration, sulfonation, halogenation.", "module": "M403"},
+      {"_id": "L4023", "name": "Aromatic Reactivity", "description": "Activating and deactivating groups.", "module": "M403"}
+    ]
+  },
+  {
+    "_id": "M404",
+    "name": "Alcohols, Ethers, and Epoxides",
+    "description": "Functional group chemistry of oxygen-containing compounds.",
+    "course": "RS104",
+    "lessons": [
+      {"_id": "L4031", "name": "Alcohol Reactions", "description": "Oxidation and substitution of alcohols.", "module": "M404"},
+      {"_id": "L4032", "name": "Ether Formation", "description": "Williamson synthesis and reactions.", "module": "M404"},
+      {"_id": "L4033", "name": "Epoxide Chemistry", "description": "Ring-opening reactions and applications.", "module": "M404"}
+    ]
+  },
+  {
+    "_id": "M405",
+    "name": "Carbonyl Compounds",
+    "description": "Chemistry of aldehydes and ketones.",
+    "course": "RS104",
+    "lessons": [
+      {"_id": "L4041", "name": "Nucleophilic Addition", "description": "Mechanisms of carbonyl addition.", "module": "M405"},
+      {"_id": "L4042", "name": "Aldol Condensation", "description": "Formation of beta-hydroxy carbonyls.", "module": "M405"},
+      {"_id": "L4043", "name": "Carbonyl Reduction", "description": "Reduction to alcohols using reagents.", "module": "M405"}
+    ]
+  },
+  {
+    "_id": "M406",
+    "name": "Carboxylic Acids and Derivatives",
+    "description": "Structure and reactivity of carboxylic acids.",
+    "course": "RS104",
+    "lessons": [
+      {"_id": "L4051", "name": "Acid-Base Properties", "description": "Acidity of carboxylic acids.", "module": "M406"},
+      {"_id": "L4052", "name": "Derivatives", "description": "Esters, amides, anhydrides.", "module": "M406"},
+      {"_id": "L4053", "name": "Nucleophilic Acyl Substitution", "description": "Mechanism and applications.", "module": "M406"}
+    ]
+  },
+  {
+    "_id": "M407",
+    "name": "Amines and Amides",
+    "description": "Nitrogen-containing functional groups.",
+    "course": "RS104",
+    "lessons": [
+      {"_id": "L4061", "name": "Amine Chemistry", "description": "Basicity and reactions of amines.", "module": "M407"},
+      {"_id": "L4062", "name": "Amide Formation", "description": "Synthesis from carboxylic acids.", "module": "M407"},
+      {"_id": "L4063", "name": "Reactivity of Amines", "description": "Nucleophilic substitution and acylation.", "module": "M407"}
+    ]
+  },
+  {
+    "_id": "M408",
+    "name": "Polymers and Macromolecules",
+    "description": "Study of synthetic and natural polymers.",
+    "course": "RS104",
+    "lessons": [
+      {"_id": "L4071", "name": "Polymerization", "description": "Addition and condensation polymerization.", "module": "M408"},
+      {"_id": "L4072", "name": "Polymer Properties", "description": "Molecular weight, crystallinity, and applications.", "module": "M408"},
+      {"_id": "L4073", "name": "Biopolymers", "description": "Proteins, nucleic acids, and polysaccharides.", "module": "M408"}
+    ]
+  },
+  {
+    "_id": "M409",
+    "name": "Spectroscopy and Structure Determination",
+    "description": "Techniques to determine molecular structure.",
+    "course": "RS104",
+    "lessons": [
+      {"_id": "L4081", "name": "IR Spectroscopy", "description": "Vibrational analysis and functional group identification.", "module": "M409"},
+      {"_id": "L4082", "name": "NMR Spectroscopy", "description": "Proton and carbon NMR for structure determination.", "module": "M409"},
+      {"_id": "L4083", "name": "Mass Spectrometry", "description": "Molecular mass and fragmentation patterns.", "module": "M409"}
+    ]
+  },
+  {
+    "_id": "M410",
+    "name": "Organic Synthesis and Applications",
+    "description": "Advanced strategies in organic synthesis.",
+    "course": "RS104",
+    "lessons": [
+      {"_id": "L4091", "name": "Retrosynthesis", "description": "Planning multi-step synthesis.", "module": "M410"},
+      {"_id": "L4092", "name": "Stereoselective Synthesis", "description": "Control of stereochemistry in reactions.", "module": "M410"},
+      {"_id": "L4093", "name": "Applications", "description": "Organic chemistry in pharmaceuticals and materials.", "module": "M410"}
+    ]
+  }
+,
+[
+  {
+    "_id": "M101",
+    "name": "Introduction to Rocket Propulsion",
+    "description": "Basic principles of rocket propulsion and rocket engines.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L101", "name": "History of Rocketry", "description": "A brief history of rocketry and space exploration.", "module": "M101"},
+      {"_id": "L102", "name": "Rocket Propulsion Fundamentals", "description": "Basic principles of rocket propulsion.", "module": "M101"},
+      {"_id": "L103", "name": "Rocket Engine Types", "description": "Overview of different types of rocket engines.", "module": "M101"}
+    ]
+  },
+  {
+    "_id": "M102",
+    "name": "Fuel and Combustion",
+    "description": "Understanding rocket fuel, combustion processes, and efficiency.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L201", "name": "Rocket Fuel", "description": "Overview of different types of rocket fuels.", "module": "M102"},
+      {"_id": "L202", "name": "Combustion Processes", "description": "Understanding combustion processes and efficiency.", "module": "M102"},
+      {"_id": "L203", "name": "Combustion Instability", "description": "Understanding combustion instability and mitigation.", "module": "M102"},
+      {"_id": "L204", "name": "Liquid vs Solid Propellants", "description": "Comparing liquid and solid rocket propellants.", "module": "M102"},
+      {"_id": "L205", "name": "Hybrid Propellants", "description": "Exploring hybrid propellant combinations.", "module": "M102"}
+    ]
+  },
+  {
+    "_id": "M103",
+    "name": "Nozzle Design",
+    "description": "Principles of rocket nozzle design and performance optimization.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L301", "name": "Nozzle Design", "description": "Overview of different types of rocket nozzles.", "module": "M103"},
+      {"_id": "L302", "name": "Nozzle Performance", "description": "Understanding nozzle performance and efficiency.", "module": "M103"},
+      {"_id": "L303", "name": "Nozzle Optimization", "description": "Optimizing nozzle design for specific applications.", "module": "M103"},
+      {"_id": "L304", "name": "Thrust Vectoring", "description": "How nozzle design affects rocket trajectory.", "module": "M103"},
+      {"_id": "L305", "name": "Nozzle Materials", "description": "Materials used for nozzle construction and heat resistance.", "module": "M103"}
+    ]
+  },
+  {
+    "_id": "M104",
+    "name": "Rocket Guidance Systems",
+    "description": "Introduction to guidance, navigation, and control of rockets.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L401", "name": "Introduction to Guidance", "description": "Basic principles of rocket guidance.", "module": "M104"},
+      {"_id": "L402", "name": "Navigation Systems", "description": "Understanding inertial and GPS navigation.", "module": "M104"},
+      {"_id": "L403", "name": "Control Mechanisms", "description": "Using fins, gimbals, and thrusters for control.", "module": "M104"}
+    ]
+  },
+  {
+    "_id": "M105",
+    "name": "Rocket Propulsion Thermodynamics",
+    "description": "Thermodynamic principles applied to rocket engines.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L501", "name": "First Law of Thermodynamics", "description": "Energy conservation in propulsion systems.", "module": "M105"},
+      {"_id": "L502", "name": "Second Law of Thermodynamics", "description": "Entropy and efficiency in engines.", "module": "M105"},
+      {"_id": "L503", "name": "Specific Impulse", "description": "Performance measure of rocket engines.", "module": "M105"}
+    ]
+  },
+  {
+    "_id": "M106",
+    "name": "Advanced Combustion Techniques",
+    "description": "High-performance combustion and propellant optimization.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L601", "name": "Preburners and Staged Combustion", "description": "Advanced liquid engine cycles.", "module": "M106"},
+      {"_id": "L602", "name": "Hybrid Engine Combustion", "description": "Optimizing hybrid engines.", "module": "M106"},
+      {"_id": "L603", "name": "Solid Rocket Grain Design", "description": "Designing solid propellant grains for performance.", "module": "M106"}
+    ]
+  },
+  {
+    "_id": "M107",
+    "name": "Propulsion Testing and Diagnostics",
+    "description": "Methods to test and evaluate rocket engines.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L701", "name": "Test Stand Design", "description": "Setting up test infrastructure.", "module": "M107"},
+      {"_id": "L702", "name": "Engine Instrumentation", "description": "Sensors and data acquisition.", "module": "M107"},
+      {"_id": "L703", "name": "Performance Metrics", "description": "Thrust, chamber pressure, and efficiency analysis.", "module": "M107"}
+    ]
+  },
+  {
+    "_id": "M108",
+    "name": "Rocket Propulsion Safety",
+    "description": "Safety practices in rocket testing and operations.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L801", "name": "Launch Safety Procedures", "description": "Safe operations during launches.", "module": "M108"},
+      {"_id": "L802", "name": "Propellant Handling", "description": "Safe storage and handling of fuels.", "module": "M108"},
+      {"_id": "L803", "name": "Emergency Protocols", "description": "Accident prevention and response.", "module": "M108"}
+    ]
+  },
+  {
+    "_id": "M109",
+    "name": "Future Rocket Technologies",
+    "description": "Exploring cutting-edge propulsion technologies.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L901", "name": "Electric Propulsion", "description": "Ion and Hall-effect thrusters.", "module": "M109"},
+      {"_id": "L902", "name": "Nuclear Thermal Rockets", "description": "Nuclear-based propulsion concepts.", "module": "M109"},
+      {"_id": "L903", "name": "Reusable Launch Systems", "description": "Designs for rockets that can be reused.", "module": "M109"}
+    ]
+  },
+  {
+    "_id": "M110",
+    "name": "Capstone Project",
+    "description": "Hands-on rocket propulsion design project.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L1001", "name": "Project Planning", "description": "Define objectives and constraints.", "module": "M110"},
+      {"_id": "L1002", "name": "Design and Simulation", "description": "Modeling and simulating rocket engines.", "module": "M110"},
+      {"_id": "L1003", "name": "Final Presentation", "description": "Present results and conclusions.", "module": "M110"}
+    ]
+  }
+],
+  {
+    "_id": "M10501",
+    "name": "Introduction to Inorganic Chemistry",
+    "description": "Overview of inorganic chemistry, its scope and significance.",
+    "course": "RS105",
+    "lessons": [
+      {"_id": "L10501", "name": "History and Scope", "description": "Development of inorganic chemistry and its applications.", "module": "M10501"},
+      {"_id": "L10502", "name": "Basic Concepts", "description": "Atoms, ions, and molecules in inorganic chemistry.", "module": "M10501"},
+      {"_id": "L10503", "name": "Periodic Table Overview", "description": "Understanding groups, periods, and element properties.", "module": "M10501"}
+    ]
+  },
+  {
+    "_id": "M10502",
+    "name": "Chemical Bonding",
+    "description": "Fundamentals of ionic, covalent, and metallic bonding.",
+    "course": "RS105",
+    "lessons": [
+      {"_id": "L10511", "name": "Ionic Bonding", "description": "Formation and properties of ionic compounds.", "module": "M10502"},
+      {"_id": "L10512", "name": "Covalent Bonding", "description": "Bond types, polarity, and molecular geometry.", "module": "M10502"},
+      {"_id": "L10513", "name": "Metallic Bonding", "description": "Bonding in metals and alloys.", "module": "M10502"},
+      {"_id": "L10514", "name": "Lewis Structures", "description": "Representation of molecules using Lewis diagrams.", "module": "M10502"}
+    ]
+  },
+  {
+    "_id": "M10503",
+    "name": "Crystal Structures",
+    "description": "Study of solid-state structures and lattices.",
+    "course": "RS105",
+    "lessons": [
+      {"_id": "L10521", "name": "Unit Cells and Lattices", "description": "Types of unit cells and lattice parameters.", "module": "M10503"},
+      {"_id": "L10522", "name": "Packing in Solids", "description": "Close packing and voids in crystals.", "module": "M10503"},
+      {"_id": "L10523", "name": "Crystal Defects", "description": "Point, line, and planar defects.", "module": "M10503"}
+    ]
+  },
+  {
+    "_id": "M10504",
+    "name": "Acids, Bases, and Oxides",
+    "description": "Understanding acid-base theory and oxide chemistry.",
+    "course": "RS105",
+    "lessons": [
+      {"_id": "L10531", "name": "Acid-Base Theories", "description": "Arrhenius, Bronsted-Lowry, and Lewis acids/bases.", "module": "M10504"},
+      {"_id": "L10532", "name": "Properties of Oxides", "description": "Acidic, basic, amphoteric, and neutral oxides.", "module": "M10504"},
+      {"_id": "L10533", "name": "pH and Buffer Systems", "description": "Calculations and importance in inorganic systems.", "module": "M10504"}
+    ]
+  },
+  {
+    "_id": "M10505",
+    "name": "Coordination Chemistry",
+    "description": "Study of coordination compounds and complex ions.",
+    "course": "RS105",
+    "lessons": [
+      {"_id": "L10541", "name": "Ligands and Coordination Number", "description": "Classification of ligands and geometry.", "module": "M10505"},
+      {"_id": "L10542", "name": "Crystal Field Theory", "description": "Splitting of d-orbitals in complexes.", "module": "M10505"},
+      {"_id": "L10543", "name": "Nomenclature of Complexes", "description": "IUPAC rules for naming coordination compounds.", "module": "M10505"}
+    ]
+  },
+  {
+    "_id": "M10506",
+    "name": "Transition Elements",
+    "description": "Properties and chemistry of transition metals.",
+    "course": "RS105",
+    "lessons": [
+      {"_id": "L10551", "name": "General Properties", "description": "Electronic configuration and oxidation states.", "module": "M10506"},
+      {"_id": "L10552", "name": "Chemistry of Transition Metals", "description": "Reactivity, complexes, and catalysis.", "module": "M10506"},
+      {"_id": "L10553", "name": "Colour and Magnetism", "description": "Origin of colours and magnetic behaviour in complexes.", "module": "M10506"}
+    ]
+  },
+  {
+    "_id": "M10507",
+    "name": "Main Group Elements",
+    "description": "Chemistry of s- and p-block elements.",
+    "course": "RS105",
+    "lessons": [
+      {"_id": "L10561", "name": "Alkali and Alkaline Earth Metals", "description": "Reactivity and compounds of group 1 & 2.", "module": "M10507"},
+      {"_id": "L10562", "name": "Group 13–18 Elements", "description": "Trends and important compounds.", "module": "M10507"},
+      {"_id": "L10563", "name": "Hydrides, Halides, and Oxides", "description": "Synthesis and properties.", "module": "M10507"}
+    ]
+  },
+  {
+    "_id": "M10508",
+    "name": "Lanthanides and Actinides",
+    "description": "Properties, electronic structure, and applications.",
+    "course": "RS105",
+    "lessons": [
+      {"_id": "L10571", "name": "Lanthanide Series", "description": "Electronic configuration, contraction, and uses.", "module": "M10508"},
+      {"_id": "L10572", "name": "Actinide Series", "description": "Actinide chemistry and radioactive elements.", "module": "M10508"},
+      {"_id": "L10573", "name": "Separation Techniques", "description": "Methods for separating f-block elements.", "module": "M10508"}
+    ]
+  },
+  {
+    "_id": "M10509",
+    "name": "Inorganic Reaction Mechanisms",
+    "description": "Mechanistic aspects of inorganic reactions.",
+    "course": "RS105",
+    "lessons": [
+      {"_id": "L10581", "name": "Substitution Reactions", "description": "Mechanisms in coordination compounds.", "module": "M10509"},
+      {"_id": "L10582", "name": "Redox Reactions", "description": "Electron transfer processes and kinetics.", "module": "M10509"},
+      {"_id": "L10583", "name": "Ligand Exchange and Chelation", "description": "Mechanistic insights into ligand substitution.", "module": "M10509"}
+    ]
+  },
+  {
+    "_id": "M10510",
+    "name": "Inorganic Chemistry Applications",
+    "description": "Practical applications in industry, materials, and catalysis.",
+    "course": "RS105",
+    "lessons": [
+      {"_id": "L10591", "name": "Industrial Applications", "description": "Metallurgy, fertilizers, and inorganic chemicals.", "module": "M10510"},
+      {"_id": "L10592", "name": "Catalysis", "description": "Use of inorganic compounds in catalysis.", "module": "M10510"},
+      {"_id": "L10593", "name": "Materials Chemistry", "description": "Inorganic materials in electronics and ceramics.", "module": "M10510"}
+    ]
+  }
+,
+  {
+    "_id": "M10601",
+    "name": "Introduction to Physical Chemistry",
+    "description": "Overview of physical chemistry, its principles and scope.",
+    "course": "RS106",
+    "lessons": [
+      {"_id": "L10601", "name": "Scope and Importance", "description": "Significance of physical chemistry in science and industry.", "module": "M10601"},
+      {"_id": "L10602", "name": "Basic Concepts", "description": "Moles, molar mass, concentration, and stoichiometry.", "module": "M10601"},
+      {"_id": "L10603", "name": "Units and Measurements", "description": "SI units, conversions, and measurement accuracy.", "module": "M10601"}
+    ]
+  },
+  {
+    "_id": "M10602",
+    "name": "Thermodynamics",
+    "description": "Fundamentals of energy, heat, work, and entropy.",
+    "course": "RS106",
+    "lessons": [
+      {"_id": "L10611", "name": "First Law of Thermodynamics", "description": "Energy conservation and internal energy.", "module": "M10602"},
+      {"_id": "L10612", "name": "Second Law of Thermodynamics", "description": "Entropy, spontaneity, and heat engines.", "module": "M10602"},
+      {"_id": "L10613", "name": "Gibbs Free Energy", "description": "Predicting reaction spontaneity and equilibrium.", "module": "M10602"},
+      {"_id": "L10614", "name": "Thermodynamic Cycles", "description": "Applications in engines, refrigeration, and propulsion.", "module": "M10602"}
+    ]
+  },
+  {
+    "_id": "M10603",
+    "name": "Chemical Kinetics",
+    "description": "Study of reaction rates, order, and mechanisms.",
+    "course": "RS106",
+    "lessons": [
+      {"_id": "L10621", "name": "Reaction Rates", "description": "Factors affecting the rate of reaction.", "module": "M10603"},
+      {"_id": "L10622", "name": "Rate Laws", "description": "Determining reaction order and rate constants.", "module": "M10603"},
+      {"_id": "L10623", "name": "Reaction Mechanisms", "description": "Stepwise pathways of chemical reactions.", "module": "M10603"},
+      {"_id": "L10624", "name": "Catalysis", "description": "Effect of catalysts on reaction rates.", "module": "M10603"}
+    ]
+  },
+  {
+    "_id": "M10604",
+    "name": "Chemical Equilibrium",
+    "description": "Dynamic equilibrium in chemical reactions.",
+    "course": "RS106",
+    "lessons": [
+      {"_id": "L10631", "name": "Law of Mass Action", "description": "Relationship between concentrations and equilibrium constants.", "module": "M10604"},
+      {"_id": "L10632", "name": "Le Chatelier’s Principle", "description": "Predicting system response to changes.", "module": "M10604"},
+      {"_id": "L10633", "name": "Applications in Industry", "description": "Equilibrium in chemical processes and reactors.", "module": "M10604"}
+    ]
+  },
+  {
+    "_id": "M10605",
+    "name": "Electrochemistry",
+    "description": "Study of redox reactions, cells, and electrochemical processes.",
+    "course": "RS106",
+    "lessons": [
+      {"_id": "L10641", "name": "Electrochemical Cells", "description": "Galvanic and electrolytic cells.", "module": "M10605"},
+      {"_id": "L10642", "name": "Nernst Equation", "description": "Relating cell potential to concentration and temperature.", "module": "M10605"},
+      {"_id": "L10643", "name": "Applications", "description": "Batteries, corrosion, and electrolysis.", "module": "M10605"}
+    ]
+  },
+  {
+    "_id": "M10606",
+    "name": "Quantum Chemistry",
+    "description": "Basics of quantum mechanics applied to chemistry.",
+    "course": "RS106",
+    "lessons": [
+      {"_id": "L10651", "name": "Wave-Particle Duality", "description": "Fundamental principles of quantum mechanics.", "module": "M10606"},
+      {"_id": "L10652", "name": "Schrödinger Equation", "description": "Application to hydrogen atom and simple systems.", "module": "M10606"},
+      {"_id": "L10653", "name": "Atomic Orbitals", "description": "Shapes, energy levels, and quantum numbers.", "module": "M10606"}
+    ]
+  },
+  {
+    "_id": "M10607",
+    "name": "Spectroscopy",
+    "description": "Techniques to study molecular structure using light and radiation.",
+    "course": "RS106",
+    "lessons": [
+      {"_id": "L10661", "name": "UV-Vis Spectroscopy", "description": "Electronic transitions and applications.", "module": "M10607"},
+      {"_id": "L10662", "name": "IR Spectroscopy", "description": "Vibrational modes and functional group analysis.", "module": "M10607"},
+      {"_id": "L10663", "name": "NMR Spectroscopy", "description": "Proton and carbon NMR for structure elucidation.", "module": "M10607"}
+    ]
+  },
+  {
+    "_id": "M10608",
+    "name": "Surface Chemistry",
+    "description": "Study of surfaces, adsorption, and colloids.",
+    "course": "RS106",
+    "lessons": [
+      {"_id": "L10671", "name": "Adsorption", "description": "Physisorption vs chemisorption and isotherms.", "module": "M10608"},
+      {"_id": "L10672", "name": "Catalysis and Surface Reactions", "description": "Heterogeneous catalysis principles.", "module": "M10608"},
+      {"_id": "L10673", "name": "Colloids and Interfaces", "description": "Properties of colloids and micelles.", "module": "M10608"}
+    ]
+  },
+  {
+    "_id": "M10609",
+    "name": "Thermochemistry",
+    "description": "Energy changes in chemical reactions.",
+    "course": "RS106",
+    "lessons": [
+      {"_id": "L10681", "name": "Enthalpy and Heat Changes", "description": "Measuring and calculating reaction enthalpy.", "module": "M10609"},
+      {"_id": "L10682", "name": "Hess’s Law", "description": "Using Hess’s Law to determine enthalpy changes.", "module": "M10609"},
+      {"_id": "L10683", "name": "Calorimetry", "description": "Experimental determination of heat changes.", "module": "M10609"}
+    ]
+  },
+  {
+    "_id": "M10610",
+    "name": "Advanced Topics in Physical Chemistry",
+    "description": "Modern applications and interdisciplinary approaches.",
+    "course": "RS106",
+    "lessons": [
+      {"_id": "L10691", "name": "Statistical Mechanics", "description": "Connecting microscopic properties to macroscopic observables.", "module": "M10610"},
+      {"_id": "L10692", "name": "Chemical Dynamics", "description": "Reaction pathways and transition state theory.", "module": "M10610"},
+      {"_id": "L10693", "name": "Applications in Material Science", "description": "Physical chemistry in nanomaterials and catalysis.", "module": "M10610"}
+    ]
+  }
+,
+[
+  {
+    "_id": "M10701",
+    "name": "Introduction to Middle-earth Languages",
+    "description": "Overview of Tolkien's constructed languages and their role in Middle-earth.",
+    "course": "RS107",
+    "lessons": [
+      {"_id": "L10701", "name": "Languages of Middle-earth", "description": "Elvish, Dwarvish, and other tongues.", "module": "M10701"},
+      {"_id": "L10702", "name": "History of Tolkien's Linguistics", "description": "Development of languages over time.", "module": "M10701"},
+      {"_id": "L10703", "name": "Significance in Storytelling", "description": "How languages shape culture and lore.", "module": "M10701"}
+    ]
+  },
+  {
+    "_id": "M10702",
+    "name": "Quenya Language",
+    "description": "Study of the High-elven language and its grammar.",
+    "course": "RS107",
+    "lessons": [
+      {"_id": "L10711", "name": "Introduction to Quenya", "description": "Origins and usage of Quenya.", "module": "M10702"},
+      {"_id": "L10712", "name": "Quenya Phonetics", "description": "Sounds and pronunciation rules.", "module": "M10702"},
+      {"_id": "L10713", "name": "Quenya Grammar", "description": "Nouns, verbs, and sentence structure.", "module": "M10702"},
+      {"_id": "L10714", "name": "Basic Vocabulary", "description": "Common words and phrases.", "module": "M10702"}
+    ]
+  },
+  {
+    "_id": "M10703",
+    "name": "Sindarin Language",
+    "description": "The most widely spoken Elvish language in Middle-earth.",
+    "course": "RS107",
+    "lessons": [
+      {"_id": "L10721", "name": "Introduction to Sindarin", "description": "History and dialects of Sindarin.", "module": "M10703"},
+      {"_id": "L10722", "name": "Sindarin Phonetics", "description": "Sounds, pronunciation, and elision.", "module": "M10703"},
+      {"_id": "L10723", "name": "Sindarin Grammar", "description": "Mutations, cases, and verb forms.", "module": "M10703"}
+    ]
+  },
+  {
+    "_id": "M10704",
+    "name": "Dwarvish (Khuzdul)",
+    "description": "Exploring the secretive language of the Dwarves.",
+    "course": "RS107",
+    "lessons": [
+      {"_id": "L10731", "name": "Origins of Khuzdul", "description": "Creation by Aulë and secretive usage.", "module": "M10704"},
+      {"_id": "L10732", "name": "Khuzdul Structure", "description": "Basic grammar and word formation.", "module": "M10704"},
+      {"_id": "L10733", "name": "Khuzdul Vocabulary", "description": "Common words and names.", "module": "M10704"}
+    ]
+  },
+  {
+    "_id": "M10705",
+    "name": "The Black Speech",
+    "description": "Language of Mordor and its linguistic features.",
+    "course": "RS107",
+    "lessons": [
+      {"_id": "L10741", "name": "Introduction to Black Speech", "description": "Origins and history.", "module": "M10705"},
+      {"_id": "L10742", "name": "Grammar and Syntax", "description": "Rules and structure.", "module": "M10705"},
+      {"_id": "L10743", "name": "Famous Phrases", "description": "Iconic inscriptions like the One Ring inscription.", "module": "M10705"}
+    ]
+  },
+  {
+    "_id": "M10706",
+    "name": "Writing Systems of Middle-earth",
+    "description": "Scripts used to write Tolkien's languages.",
+    "course": "RS107",
+    "lessons": [
+      {"_id": "L10751", "name": "Tengwar Script", "description": "Elvish script for Quenya and Sindarin.", "module": "M10706"},
+      {"_id": "L10752", "name": "Cirth Script", "description": "Runic writing system for Dwarvish.", "module": "M10706"},
+      {"_id": "L10753", "name": "Transliteration Techniques", "description": "Converting between scripts and modern alphabet.", "module": "M10706"}
+    ]
+  },
+  {
+    "_id": "M10707",
+    "name": "Translation and Interpretation",
+    "description": "Approaches to translating Middle-earth languages.",
+    "course": "RS107",
+    "lessons": [
+      {"_id": "L10761", "name": "Translating Quenya and Sindarin", "description": "Techniques and challenges.", "module": "M10707"},
+      {"_id": "L10762", "name": "Translation of Texts", "description": "Poems, songs, and inscriptions.", "module": "M10707"},
+      {"_id": "L10763", "name": "Interpreting Context", "description": "Cultural and historical understanding.", "module": "M10707"}
+    ]
+  },
+  {
+    "_id": "M10708",
+    "name": "Comparative Linguistics",
+    "description": "Comparing Tolkien's languages to real-world language families.",
+    "course": "RS107",
+    "lessons": [
+      {"_id": "L10771", "name": "Elvish vs Real Languages", "description": "Influences from Finnish, Welsh, and others.", "module": "M10708"},
+      {"_id": "L10772", "name": "Phonology and Morphology", "description": "Sound patterns and word formation.", "module": "M10708"},
+      {"_id": "L10773", "name": "Syntax and Semantics", "description": "Sentence structure and meaning.", "module": "M10708"}
+    ]
+  },
+  {
+    "_id": "M10709",
+    "name": "Scripts in Middle-earth History",
+    "description": "Historical development of scripts and inscriptions.",
+    "course": "RS107",
+    "lessons": [
+      {"_id": "L10781", "name": "Ancient Inscriptions", "description": "Runes on artifacts and monuments.", "module": "M10709"},
+      {"_id": "L10782", "name": "Cultural Context", "description": "How scripts reflect Middle-earth societies.", "module": "M10709"},
+      {"_id": "L10783", "name": "Preservation and Interpretation", "description": "Deciphering ancient texts.", "module": "M10709"}
+    ]
+  },
+  {
+    "_id": "M10710",
+    "name": "Advanced Studies and Applications",
+    "description": "Creative and academic uses of Tolkien’s languages and scripts.",
+    "course": "RS107",
+    "lessons": [
+      {"_id": "L10791", "name": "Constructed Languages in Literature", "description": "Comparison with other conlangs.", "module": "M10710"},
+      {"_id": "L10792", "name": "Language Reconstruction", "description": "Creating new words and forms in Tolkien’s style.", "module": "M10710"},
+      {"_id": "L10793", "name": "Fan Usage and Modern Media", "description": "Languages in games, movies, and fan works.", "module": "M10710"}
+    ]
+  }
+],
+  {
+    "_id": "M111",
+    "name": "Advanced Nozzle and Propellant Integration",
+    "description": "Optimizing the interaction between nozzles and propellants for efficiency.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L1101", "name": "Nozzle-Propellant Matching", "description": "Selecting propellants for optimal nozzle performance.", "module": "M111"},
+      {"_id": "L1102", "name": "Combustion Chamber Design", "description": "Influence of chamber geometry on exhaust velocity.", "module": "M111"},
+      {"_id": "L1103", "name": "Performance Trade-offs", "description": "Balancing thrust, efficiency, and weight.", "module": "M111"}
+    ]
+  },
+  {
+    "_id": "M112",
+    "name": "Rocket Engine Cycles",
+    "description": "Detailed study of different engine cycles and their thermodynamic principles.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L1201", "name": "Gas Generator Cycle", "description": "Principle and application of gas generator engines.", "module": "M112"},
+      {"_id": "L1202", "name": "Staged Combustion Cycle", "description": "Efficiency and challenges in staged combustion.", "module": "M112"},
+      {"_id": "L1203", "name": "Expander Cycle", "description": "Thermal-driven engine cycles for low-thrust applications.", "module": "M112"}
+    ]
+  },
+  {
+    "_id": "M113",
+    "name": "Cryogenic Propulsion Systems",
+    "description": "Use of cryogenic fuels and related storage challenges.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L1301", "name": "Cryogenic Fuels Overview", "description": "Liquid hydrogen, oxygen, and their properties.", "module": "M113"},
+      {"_id": "L1302", "name": "Storage and Handling", "description": "Maintaining cryogenic temperatures and preventing boil-off.", "module": "M113"},
+      {"_id": "L1303", "name": "Integration with Rocket Systems", "description": "Design considerations for cryogenic engines.", "module": "M113"}
+    ]
+  },
+  {
+    "_id": "M114",
+    "name": "Thrust Augmentation Techniques",
+    "description": "Methods to increase rocket thrust without changing fuel type.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L1401", "name": "Afterburners and Ejectors", "description": "Boosting thrust using secondary combustion or flow systems.", "module": "M114"},
+      {"_id": "L1402", "name": "Nozzle Expansion Techniques", "description": "Altitude-compensating and plug nozzles for variable thrust.", "module": "M114"},
+      {"_id": "L1403", "name": "Multi-Stage Rockets", "description": "Improving overall performance using multiple stages.", "module": "M114"}
+    ]
+  },
+  {
+    "_id": "M115",
+    "name": "Propellant Chemistry and Environmental Impact",
+    "description": "Understanding chemical reactions in propellants and their ecological effects.",
+    "course": "RS101",
+    "lessons": [
+      {"_id": "L1501", "name": "Toxicity of Propellants", "description": "Environmental hazards of different rocket fuels.", "module": "M115"},
+      {"_id": "L1502", "name": "Green Propulsion", "description": "Environmentally friendly propellants and oxidizers.", "module": "M115"},
+      {"_id": "L1503", "name": "Exhaust Analysis", "description": "Studying emissions and combustion byproducts.", "module": "M115"}
+    ]
   }
 ]
+
+
+
+
