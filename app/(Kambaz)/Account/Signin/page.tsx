@@ -17,7 +17,7 @@ export default function Signin() {
     );
 
     if (user) {
-      // ✅ Redirect to the correct profile URL using username
+      // ✅ Redirect to the correct profile URL using 
       router.push(`/Account/Profile/${user.username}`);
     } else {
       alert("Invalid username or password");
