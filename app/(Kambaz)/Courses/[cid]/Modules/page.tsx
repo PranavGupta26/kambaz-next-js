@@ -11,17 +11,36 @@ import { BsGripVertical } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa6";
 import { v4 as uuidv4 } from "uuid";
 
+// Define types
+interface Lesson {
+  _id?: string;
+  name: string;
+  [key: string]: any;
+}
+
+interface Module {
+  _id: string;
+  name: string;
+  course: string;
+  lessons: Lesson[];
+  editing?: boolean;
+  [key: string]: any;
+}
+
 export default function Modules() {
   const { cid } = useParams();
-  const [modules, setModules] = useState<any[]>(db.modules); // initial modules from database
+  const courseId = cid as string | undefined;
+
+  // Initial modules from database, cast to Module[]
+  const [modules, setModules] = useState<Module[]>(db.modules as Module[]);
   const [moduleName, setModuleName] = useState("");
 
   // Add new module
   const addModule = () => {
-    if (!moduleName.trim()) return; // prevent empty module names
+    if (!moduleName.trim() || !courseId) return; // prevent empty module names or undefined course id
     setModules([
       ...modules,
-      { _id: uuidv4(), name: moduleName, course: cid, lessons: [] },
+      { _id: uuidv4(), name: moduleName, course: courseId, lessons: [] },
     ]);
     setModuleName("");
   };
@@ -39,7 +58,7 @@ export default function Modules() {
   };
 
   // Update module
-  const updateModule = (updatedModule: any) => {
+  const updateModule = (updatedModule: Module) => {
     setModules(
       modules.map((m) => (m._id === updatedModule._id ? updatedModule : m))
     );
@@ -59,7 +78,7 @@ export default function Modules() {
       {/* List of modules */}
       <ListGroup id="wd-modules" className="rounded-0">
         {modules
-          .filter((module) => module.course === cid)
+          .filter((module) => module.course === courseId)
           .map((module) => (
             <ListGroupItem
               key={module._id}
@@ -101,7 +120,7 @@ export default function Modules() {
               {/* Lessons */}
               {module.lessons && module.lessons.length > 0 && (
                 <ListGroup className="wd-lessons rounded-0">
-                  {module.lessons.map((lesson: any) => (
+                  {module.lessons.map((lesson) => (
                     <ListGroupItem
                       key={lesson._id || lesson.name}
                       className="wd-lesson p-3 ps-1 d-flex justify-content-between align-items-center"

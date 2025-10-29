@@ -8,16 +8,28 @@ import { FormControl, Button } from "react-bootstrap";
 import { setCurrentUser } from "../reducer";
 import * as db from "../../Database";
 
+type Credentials = {
+  username: string;
+  password: string;
+};
+
+type User = {
+  username: string;
+  password: string;
+  [key: string]: any; // for any extra properties in db.users
+};
+
 export default function Signin() {
-  const [credentials, setCredentials] = useState<{ username?: string; password?: string }>({});
+  const [credentials, setCredentials] = useState<Partial<Credentials>>({});
   const dispatch = useDispatch();
 
   const signin = () => {
-    const user = db.users.find(
-      (u: any) =>
+    const user = (db.users as User[]).find(
+      (u) =>
         u.username === credentials.username &&
         u.password === credentials.password
     );
+
     if (!user) {
       alert("Invalid username or password");
       return;
@@ -28,8 +40,12 @@ export default function Signin() {
   };
 
   return (
-    <div id="wd-signin-screen" className="container mt-5" style={{ maxWidth: "400px" }}>
-      {/* ✅ Header Section */}
+    <div
+      id="wd-signin-screen"
+      className="container mt-5"
+      style={{ maxWidth: "400px" }}
+    >
+      {/* Header */}
       <div className="mb-4 text-center">
         <h1 className="h4 fw-bold">Pranav Gupta</h1>
         <h2 className="h6 text-muted">CS5610</h2>
@@ -43,11 +59,11 @@ export default function Signin() {
         </a>
       </div>
 
-      {/* ✅ Signin Form */}
+      {/* Signin Form */}
       <h3 className="mb-3 text-center">Sign in</h3>
 
       <FormControl
-        defaultValue={credentials.username}
+        value={credentials.username ?? ""}
         onChange={(e) =>
           setCredentials({ ...credentials, username: e.target.value })
         }
@@ -57,7 +73,7 @@ export default function Signin() {
       />
 
       <FormControl
-        defaultValue={credentials.password}
+        value={credentials.password ?? ""}
         onChange={(e) =>
           setCredentials({ ...credentials, password: e.target.value })
         }

@@ -2,19 +2,27 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import * as db from "../Database";
 import { Row, Col, Card, FormControl } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewCourse, deleteCourse, updateCourse } from "../Courses/reducer";
+import { addNewCourse, deleteCourse, updateCourse, Course } from "../Courses/reducer";
+
+// ---------------------------
+// Type for Redux state slice
+// ---------------------------
+interface RootState {
+  coursesReducer: {
+    courses: Course[];
+  };
+}
 
 export default function Dashboard() {
   // ✅ Get courses from Redux store
-  const { courses } = useSelector((state: any) => state.coursesReducer);
+  const courses = useSelector((state: RootState) => state.coursesReducer.courses);
   const dispatch = useDispatch();
 
-  // ✅ Local course form state
-  const [course, setCourse] = useState<any>({
+  // ✅ Local course form state (fully typed as Course)
+  const [course, setCourse] = useState<Course>({
     _id: "0",
     name: "New Course",
     number: "New Number",
@@ -36,7 +44,15 @@ export default function Dashboard() {
           className="btn btn-primary float-end"
           id="wd-add-new-course-click"
           onClick={() => {
-            const newCourse = { ...course, _id: uuidv4() };
+            // Create a new course with unique _id
+            const newCourse: Omit<Course, "_id"> = {
+              name: course.name,
+              number: course.number,
+              startDate: course.startDate,
+              endDate: course.endDate,
+              image: course.image,
+              description: course.description,
+            };
             dispatch(addNewCourse(newCourse));
           }}
         >
@@ -54,16 +70,19 @@ export default function Dashboard() {
       </h5>
       <br />
 
+      {/* ✅ Form controls */}
       <FormControl
         value={course.name}
         className="mb-2"
         onChange={(e) => setCourse({ ...course, name: e.target.value })}
+        placeholder="Course Name"
       />
       <FormControl
         value={course.description}
         as="textarea"
         rows={3}
         onChange={(e) => setCourse({ ...course, description: e.target.value })}
+        placeholder="Course Description"
       />
       <hr />
 
@@ -74,7 +93,7 @@ export default function Dashboard() {
 
       <div id="wd-dashboard-courses">
         <Row xs={1} md={4} className="g-4 row-cols-1 row-cols-md-5">
-          {courses.map((ci: any) => (
+          {courses.map((ci: Course) => (
             <Col
               key={ci._id}
               className="wd-dashboard-course"

@@ -4,18 +4,39 @@ import { ReactNode, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "next/navigation";
 import CourseNavigation from "./Navigation";
-import Breadcrumb from "./Breadcrumb"; // ✅ existing breadcrumb
+import Breadcrumb from "./Breadcrumb"; // existing breadcrumb
 import { FaAlignJustify } from "react-icons/fa6";
+
+// Define a type for a course
+interface Course {
+  _id: string;
+  name: string;
+  number?: string;
+  startDate?: string;
+  endDate?: string;
+  image?: string;
+  description?: string;
+  [key: string]: any; // allow extra fields
+}
+
+// Define Redux slice state type
+interface CoursesState {
+  courses: Course[];
+}
 
 export default function CoursesLayout({ children }: { children: ReactNode }) {
   const { cid } = useParams();
-  const { courses } = useSelector((state: any) => state.coursesReducer);
-  const course = courses.find((course: any) => course._id === cid);
 
-  // ✅ Add state to track sidebar visibility
+  // Typed selector instead of 'any'
+  const { courses } = useSelector((state: { coursesReducer: CoursesState }) => state.coursesReducer);
+
+  // Find the current course
+  const course: Course | undefined = courses.find((c) => c._id === cid);
+
+  // State to track sidebar visibility
   const [showSidebar, setShowSidebar] = useState(true);
 
-  // ✅ Toggle function for the sandwich icon
+  // Toggle function for sandwich icon
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
@@ -24,7 +45,7 @@ export default function CoursesLayout({ children }: { children: ReactNode }) {
     <div id="wd-courses" className="p-3">
       {/* ===== Header Section ===== */}
       <div className="d-flex align-items-center mb-2 border-bottom pb-2">
-        {/* ✅ Make sandwich icon clickable to toggle sidebar */}
+        {/* Sandwich icon clickable */}
         <FaAlignJustify
           className="me-3 fs-4 text-danger"
           style={{ cursor: "pointer" }}
@@ -36,21 +57,18 @@ export default function CoursesLayout({ children }: { children: ReactNode }) {
         </h2>
       </div>
 
-      {/* ✅ Breadcrumb below course title */}
+      {/* Breadcrumb */}
       <div className="text-muted mb-3">
         <Breadcrumb course={course} />
       </div>
 
-      {/* ===== Main Layout: Sidebar + Page Content ===== */}
+      {/* Main layout */}
       <div className="d-flex">
-        {/* ✅ Conditionally render sidebar */}
         {showSidebar && (
           <div className="me-3">
             <CourseNavigation />
           </div>
         )}
-
-        {/* ✅ Page content area */}
         <div className="flex-fill">{children}</div>
       </div>
     </div>

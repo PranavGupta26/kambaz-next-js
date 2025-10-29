@@ -1,8 +1,23 @@
+"use client";
+
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
+// Define a type for your Redux todos
+interface Todo {
+  id: string | number;
+  title: string;
+}
+
+// Define a type for your Redux state slice
+interface RootState {
+  todosReducer: {
+    todos: Todo[];
+  };
+}
+
 export default function ArrayStateVariable() {
-  const [array, setArray] = useState([1, 2, 3, 4, 5]);
+  const [array, setArray] = useState<number[]>([1, 2, 3, 4, 5]);
 
   const addElement = () => {
     setArray([...array, Math.floor(Math.random() * 100)]);
@@ -12,8 +27,8 @@ export default function ArrayStateVariable() {
     setArray(array.filter((_, i) => i !== index));
   };
 
-  // Safe access to Redux todos
-  const todos = useSelector((state: any) => state.todosReducer?.todos || []);
+  // ✅ Typed access to Redux todos
+  const todos = useSelector((state: RootState) => state.todosReducer.todos);
 
   return (
     <div className="max-w-xs mx-auto p-4 border rounded-lg shadow-sm bg-white">
@@ -45,7 +60,7 @@ export default function ArrayStateVariable() {
 
       <h3 className="font-semibold mb-2">Todos from Redux:</h3>
       <ul className="space-y-2">
-        {todos.map((todo: any) => (
+        {todos.map((todo: Todo) => (
           <li
             key={todo.id}
             className="flex justify-between items-center p-2 border rounded-md"
