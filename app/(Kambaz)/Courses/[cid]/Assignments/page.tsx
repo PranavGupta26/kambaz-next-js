@@ -59,7 +59,11 @@ export default function Assignments() {
           <div className="d-flex align-items-center gap-3">
             <span className="text-muted small">40% of Total</span>
             <FaPlus className="text-dark" />
-            <ModuleControlButtons />
+            <ModuleControlButtons moduleId={""} deleteModule={function (moduleId: string): void {
+              throw new Error("Function not implemented.");
+            } } editModule={function (moduleId: string): void {
+              throw new Error("Function not implemented.");
+            } } />
           </div>
         </div>
 

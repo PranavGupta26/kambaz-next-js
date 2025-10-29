@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 export default function AccountNavigation() {
+  
   const username = "alice"; // could be dynamic in the future
 
   return (

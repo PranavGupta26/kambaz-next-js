@@ -1,32 +1,36 @@
 "use client";
 
+import Link from "next/link";
+import { redirect } from "next/dist/client/components/navigation";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { FormControl } from "react-bootstrap";
-import { usersnew } from "@/app/(Kambaz)/Database";
+import { FormControl, Button } from "react-bootstrap";
+import { setCurrentUser } from "../reducer";
+import * as db from "../../Database";
 
 export default function Signin() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const router = useRouter();
+  const [credentials, setCredentials] = useState<{ username?: string; password?: string }>({});
+  const dispatch = useDispatch();
 
-  const handleSignin = () => {
-    // Simple check (optional, can be replaced with real auth later)
-    const user = usersnew.find(
-      (u) => u.username === username && u.password === password
+  const signin = () => {
+    const user = db.users.find(
+      (u: any) =>
+        u.username === credentials.username &&
+        u.password === credentials.password
     );
-
-    if (user) {
-      // ✅ Redirect to the correct profile URL using username
-      router.push(`/Account/Profile/${user.username}`);
-    } else {
+    if (!user) {
       alert("Invalid username or password");
+      return;
     }
+
+    dispatch(setCurrentUser(user));
+    redirect("/Dashboard");
   };
 
   return (
     <div id="wd-signin-screen" className="container mt-5" style={{ maxWidth: "400px" }}>
-      <div className="mb-4">
+      {/* ✅ Header Section */}
+      <div className="mb-4 text-center">
         <h1 className="h4 fw-bold">Pranav Gupta</h1>
         <h2 className="h6 text-muted">CS5610</h2>
         <a
@@ -39,37 +43,42 @@ export default function Signin() {
         </a>
       </div>
 
-      <h3 className="mb-3">Sign in</h3>
+      {/* ✅ Signin Form */}
+      <h3 className="mb-3 text-center">Sign in</h3>
 
       <FormControl
-        id="wd-username"
+        defaultValue={credentials.username}
+        onChange={(e) =>
+          setCredentials({ ...credentials, username: e.target.value })
+        }
+        className="mb-3 form-control"
         placeholder="Username"
-        className="mb-3 form-control"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        id="wd-username"
       />
 
       <FormControl
-        id="wd-password"
-        type="password"
-        placeholder="Password"
+        defaultValue={credentials.password}
+        onChange={(e) =>
+          setCredentials({ ...credentials, password: e.target.value })
+        }
         className="mb-3 form-control"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+        type="password"
+        id="wd-password"
       />
 
-      <button
+      <Button
+        onClick={signin}
         id="wd-signin-btn"
-        onClick={handleSignin}
         className="btn btn-primary w-100 mb-3"
       >
         Sign in
-      </button>
+      </Button>
 
       <div className="text-center">
-        <a id="wd-signup-link" href="/Account/Signup">
+        <Link id="wd-signup-link" href="/Kambaz/Account/Signup">
           Sign up
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   Button,
   Dropdown,
@@ -10,8 +11,21 @@ import {
 import { FaPlus } from "react-icons/fa6";
 import { FaBan } from "react-icons/fa";
 import GreenCheckmark from "./GreenCheckmark";
+import ModuleEditor from "./ModuleEditor";
 
-export default function ModulesControls() {
+export default function ModulesControls({
+  moduleName,
+  setModuleName,
+  addModule,
+}: {
+  moduleName: string;
+  setModuleName: (title: string) => void;
+  addModule: () => void;
+}) {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div
       id="wd-modules-controls"
@@ -87,10 +101,21 @@ export default function ModulesControls() {
         id="wd-add-module-btn"
         className="d-flex align-items-center gap-2"
         style={{ height: "46px" }}
+        onClick={handleShow}
       >
-        <FaPlus />
+        <FaPlus className="position-relative" style={{ bottom: "1px" }} />
         <span>Module</span>
       </Button>
+
+      {/* ✅ ModuleEditor Modal */}
+      <ModuleEditor
+        show={show}
+        handleClose={handleClose}
+        dialogTitle="Add Module"
+        moduleName={moduleName}
+        setModuleName={setModuleName}
+        addModule={addModule}
+      />
     </div>
   );
 }

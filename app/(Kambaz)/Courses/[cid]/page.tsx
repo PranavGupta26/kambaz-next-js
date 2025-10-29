@@ -1,7 +1,7 @@
+// app/Courses/page.tsx
 import { redirect } from "next/navigation";
 
-
-export default async function CoursesPage({ params, }: { params: Promise<{ cid: string }>; }) {
- const { cid } = await params;
- redirect(`/Courses/${cid}/Home`);
+export default function CoursesIndexPage() {
+  // Redirect to default course (replace '1' with actual default)
+  redirect("/Courses/1/Home");
 }

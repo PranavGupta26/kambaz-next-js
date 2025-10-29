@@ -4,21 +4,20 @@ import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
 
 export default function CourseNavigation() {
-  const { cid } = useParams();
+  const params = useParams();
   const pathname = usePathname();
 
-  // Array of link labels only
+  const cid = params?.cid ?? "1"; // fallback to a default course id
+
   const links = ["Home", "Modules", "Piazza", "Zoom", "Assignments", "Quizzes", "Grades", "People"];
 
   return (
     <div id="wd-courses-navigation" className="list-group fs-5 rounded-0">
       {links.map((label) => {
-        // For People, route goes to /People/Table
         const route = label === "People"
           ? `/Courses/${cid}/${label}/Table`
           : `/Courses/${cid}/${label}`;
 
-        // Check if the current path matches this route
         const isActive = pathname === route;
 
         return (
