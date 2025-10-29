@@ -16,7 +16,7 @@ interface Course {
   endDate?: string;
   image?: string;
   description?: string;
-  [key: string]: any; // allow extra fields
+  [key: string]: unknown; // safer than 'any'
 }
 
 // Define Redux slice state type
@@ -28,7 +28,9 @@ export default function CoursesLayout({ children }: { children: ReactNode }) {
   const { cid } = useParams();
 
   // Typed selector instead of 'any'
-  const { courses } = useSelector((state: { coursesReducer: CoursesState }) => state.coursesReducer);
+  const { courses } = useSelector(
+    (state: { coursesReducer: CoursesState }) => state.coursesReducer
+  );
 
   // Find the current course
   const course: Course | undefined = courses.find((c) => c._id === cid);
@@ -45,7 +47,6 @@ export default function CoursesLayout({ children }: { children: ReactNode }) {
     <div id="wd-courses" className="p-3">
       {/* ===== Header Section ===== */}
       <div className="d-flex align-items-center mb-2 border-bottom pb-2">
-        {/* Sandwich icon clickable */}
         <FaAlignJustify
           className="me-3 fs-4 text-danger"
           style={{ cursor: "pointer" }}

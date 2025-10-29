@@ -13,7 +13,6 @@ export interface Course {
   endDate?: string;
   image?: string;
   description?: string;
-  [key: string]: any; // allow extra fields if needed
 }
 
 // State type
@@ -25,7 +24,7 @@ interface CoursesState {
 // Initial State
 // ---------------------------
 const initialState: CoursesState = {
-  courses: dbCourses as Course[], // type cast
+  courses: dbCourses as Course[],
 };
 
 // ---------------------------
@@ -36,10 +35,11 @@ const coursesSlice = createSlice({
   initialState,
   reducers: {
     addNewCourse: (state, action: PayloadAction<Omit<Course, "_id">>) => {
-      const newCourse = {
+      // Preserve all fields from payload including `name`
+      const newCourse: Course = {
         _id: uuidv4(),
-        ...action.payload
-      } as Course;
+        ...action.payload,
+      };
       state.courses.push(newCourse);
     },
     deleteCourse: (state, action: PayloadAction<string>) => {

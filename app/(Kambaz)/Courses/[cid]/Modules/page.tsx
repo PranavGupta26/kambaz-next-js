@@ -15,7 +15,7 @@ import { v4 as uuidv4 } from "uuid";
 interface Lesson {
   _id?: string;
   name: string;
-  [key: string]: any;
+  [key: string]: unknown; // safer than 'any'
 }
 
 interface Module {
@@ -24,7 +24,7 @@ interface Module {
   course: string;
   lessons: Lesson[];
   editing?: boolean;
-  [key: string]: any;
+  [key: string]: unknown; // safer than 'any'
 }
 
 export default function Modules() {
@@ -37,7 +37,7 @@ export default function Modules() {
 
   // Add new module
   const addModule = () => {
-    if (!moduleName.trim() || !courseId) return; // prevent empty module names or undefined course id
+    if (!moduleName.trim() || !courseId) return;
     setModules([
       ...modules,
       { _id: uuidv4(), name: moduleName, course: courseId, lessons: [] },
@@ -66,7 +66,6 @@ export default function Modules() {
 
   return (
     <div className="wd-modules">
-      {/* Controls to add a new module */}
       <ModulesControls
         moduleName={moduleName}
         setModuleName={setModuleName}
@@ -75,7 +74,6 @@ export default function Modules() {
 
       <br /><br /><br /><br />
 
-      {/* List of modules */}
       <ListGroup id="wd-modules" className="rounded-0">
         {modules
           .filter((module) => module.course === courseId)
@@ -88,7 +86,6 @@ export default function Modules() {
                 <div className="d-flex align-items-center w-100">
                   <BsGripVertical className="me-2 fs-3 flex-shrink-0" />
 
-                  {/* Module name or input for editing */}
                   {!module.editing && <span>{module.name}</span>}
                   {module.editing && (
                     <FormControl
@@ -106,7 +103,6 @@ export default function Modules() {
                   )}
                 </div>
 
-                {/* Module control buttons */}
                 <div className="d-flex align-items-center gap-2">
                   <FaPlus className="fs-5 cursor-pointer text-dark" />
                   <ModuleControlButtons
@@ -117,7 +113,6 @@ export default function Modules() {
                 </div>
               </div>
 
-              {/* Lessons */}
               {module.lessons && module.lessons.length > 0 && (
                 <ListGroup className="wd-lessons rounded-0">
                   {module.lessons.map((lesson) => (

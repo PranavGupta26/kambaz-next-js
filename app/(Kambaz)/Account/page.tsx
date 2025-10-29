@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 type User = {
   username: string;
   password?: string;
-  [key: string]: any; // for other possible fields
+  [key: string]: unknown; // safer than 'any'
 };
 
 // Define a type for the slice of state your component uses
