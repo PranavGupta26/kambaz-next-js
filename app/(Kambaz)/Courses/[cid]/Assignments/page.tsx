@@ -9,16 +9,33 @@ import { useState, useEffect } from "react";
 import ModuleControlButtons from "../Modules/ModuleControlButtons";
 import GreenCheckmark from "../Modules/GreenCheckmark";
 
+// Define Assignment type
+interface Assignment {
+  _id: string;
+  title: string;
+  description?: string;
+  assignTo?: string;
+  points: number;
+  grade?: string;
+  dueDate: string;
+  availableFrom: string;
+  availableUntil?: string;
+  module: string;
+  submissionType: "online-entry" | "no-submission" | "on-paper" | "";
+  onlineDetail?: string;
+  course: string;
+}
+
 export default function Assignments() {
-  const { cid } = useParams();
+  const { cid } = useParams() as { cid: string };
   const router = useRouter();
 
-  const [courseAssignments, setCourseAssignments] = useState<any[]>([]);
+  const [courseAssignments, setCourseAssignments] = useState<Assignment[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("assignments") || "[]");
-    setCourseAssignments(stored.filter((a: any) => a.course === cid));
+    const stored: Assignment[] = JSON.parse(localStorage.getItem("assignments") || "[]");
+    setCourseAssignments(stored.filter(a => a.course === cid));
   }, [cid]);
 
   const filteredAssignments = courseAssignments.filter(a =>
@@ -28,10 +45,10 @@ export default function Assignments() {
   const handleDelete = (_id: string) => {
     if (!confirm("Are you sure you want to delete this assignment?")) return;
 
-    const stored = JSON.parse(localStorage.getItem("assignments") || "[]");
-    const updated = stored.filter((a: any) => a._id !== _id);
+    const stored: Assignment[] = JSON.parse(localStorage.getItem("assignments") || "[]");
+    const updated = stored.filter(a => a._id !== _id);
     localStorage.setItem("assignments", JSON.stringify(updated));
-    setCourseAssignments(updated.filter((a: any) => a.course === cid));
+    setCourseAssignments(updated.filter(a => a.course === cid));
   };
 
   return (
@@ -72,10 +89,10 @@ export default function Assignments() {
             <FaPlus className="text-dark" />
             <ModuleControlButtons
               moduleId={""}
-              deleteModule={function (moduleId: string): void {
+              deleteModule={(moduleId: string) => {
                 throw new Error("Function not implemented.");
               }}
-              editModule={function (moduleId: string): void {
+              editModule={(moduleId: string) => {
                 throw new Error("Function not implemented.");
               }}
             />
@@ -85,7 +102,7 @@ export default function Assignments() {
         <ListGroup className="rounded-0">
           {filteredAssignments.map((assignment, idx) => (
             <ListGroupItem
-              key={assignment._id} // ✅ Use _id consistently
+              key={assignment._id}
               className="d-flex justify-content-between align-items-center px-3 py-3 border-bottom border-gray"
               style={{
                 borderLeft: "4px solid green",
@@ -112,7 +129,6 @@ export default function Assignments() {
               </div>
 
               <div className="d-flex align-items-center gap-2">
-                {/* Edit button */}
                 <button
                   onClick={() => router.push(`/Courses/${cid}/Assignments/Edit/${assignment._id}`)}
                   className="px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition flex items-center gap-1"
@@ -120,7 +136,6 @@ export default function Assignments() {
                   <FaEdit /> Edit
                 </button>
 
-                {/* Delete button */}
                 <button
                   onClick={() => handleDelete(assignment._id)}
                   className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition flex items-center gap-1"

@@ -3,15 +3,31 @@ import Link from "next/link";
 import { useRouter, useParams } from "next/navigation";
 import { useRef, useEffect, useState } from "react";
 
+// Define a proper type for assignments
+interface Assignment {
+  _id: string;
+  title: string;
+  description: string;
+  assignTo?: string;
+  points: number;
+  grade?: string;
+  dueDate: string;
+  availableFrom: string;
+  availableUntil: string;
+  module: string;
+  submissionType: "online-entry" | "no-submission" | "on-paper" | "";
+  onlineDetail?: string;
+}
+
 export default function EditAssignment() {
   const router = useRouter();
   const { cid, id } = useParams() as { cid: string; id: string };
   const submissionTypeRef = useRef<HTMLSelectElement>(null);
-  const [assignment, setAssignment] = useState<any>(null);
+  const [assignment, setAssignment] = useState<Assignment | null>(null);
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("assignments") || "[]");
-    const found = stored.find((a: any) => a._id === id);
+    const stored: Assignment[] = JSON.parse(localStorage.getItem("assignments") || "[]");
+    const found = stored.find(a => a._id === id);
     if (!found) return;
     setAssignment(found);
   }, [id]);
@@ -29,26 +45,18 @@ export default function EditAssignment() {
   const formatDateTimeLocal = (d: string | Date) => {
     const date = new Date(d);
     const pad = (n: number) => String(n).padStart(2, "0");
-    const year = date.getFullYear();
-    const month = pad(date.getMonth() + 1);
-    const day = pad(date.getDate());
-    const hours = pad(date.getHours());
-    const minutes = pad(date.getMinutes());
-    return `${year}-${month}-${day}T${hours}:${minutes}`;
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!assignment) return;
 
-    const stored = JSON.parse(localStorage.getItem("assignments") || "[]");
-    const updated = stored.map((a: any) => {
+    const stored: Assignment[] = JSON.parse(localStorage.getItem("assignments") || "[]");
+    const updated = stored.map(a => {
       if (a._id !== id) return a;
 
-      // Get selected online submission detail
-      const onlineDetailInput = document.querySelector<HTMLInputElement>(
-        'input[name="onlineDetail"]:checked'
-      );
+      const onlineDetailInput = document.querySelector<HTMLInputElement>('input[name="onlineDetail"]:checked');
 
       return {
         ...a,
@@ -61,7 +69,7 @@ export default function EditAssignment() {
         availableFrom: (document.getElementById("wd-availableFrom") as HTMLInputElement).value,
         availableUntil: (document.getElementById("wd-availableUntil") as HTMLInputElement).value,
         module: (document.getElementById("wd-group") as HTMLSelectElement).value,
-        submissionType: (document.getElementById("wd-submissionType") as HTMLSelectElement).value,
+        submissionType: (document.getElementById("wd-submissionType") as HTMLSelectElement).value as Assignment["submissionType"],
         onlineDetail: onlineDetailInput?.value || "",
       };
     });
