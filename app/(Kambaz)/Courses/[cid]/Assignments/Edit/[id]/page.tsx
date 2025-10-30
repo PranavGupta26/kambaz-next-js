@@ -1,52 +1,81 @@
 "use client";
-
 import Link from "next/link";
-import { useRef, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
+import { useRef, useEffect, useState } from "react";
 
-export default function AddAssignment() {
-  const submissionTypeRef = useRef<HTMLSelectElement>(null);
-  const { cid } = useParams(); // ✅ get course ID dynamically
+export default function EditAssignment() {
   const router = useRouter();
+  const { cid, id } = useParams() as { cid: string; id: string };
+  const submissionTypeRef = useRef<HTMLSelectElement>(null);
+  const [assignment, setAssignment] = useState<any>(null);
 
-  // Default Dates
-  const now = new Date();
-  const defaultDueDate = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000); // 1 week later
-  const defaultAvailableFrom = new Date();
-  const defaultAvailableUntil = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000); // 2 weeks later
-
-  const formatDateTimeLocal = (d: Date) => {
-    const pad = (n: number) => String(n).padStart(2, "0");
-    const year = d.getFullYear();
-    const month = pad(d.getMonth() + 1);
-    const day = pad(d.getDate());
-    const hours = pad(d.getHours());
-    const minutes = pad(d.getMinutes());
-    return `${year}-${month}-${day}T${hours}:${minutes}`;
-  };
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("assignments") || "[]");
+    const found = stored.find((a: any) => a._id === id);
+    if (!found) return;
+    setAssignment(found);
+  }, [id]);
 
   const toggleOnlineOptions = () => {
     const onlineDiv = document.getElementById("online-options");
-    if (!submissionTypeRef.current) return;
-    if (onlineDiv) onlineDiv.hidden = submissionTypeRef.current.value !== "online-entry";
+    if (!submissionTypeRef.current || !onlineDiv) return;
+    onlineDiv.hidden = submissionTypeRef.current.value !== "online-entry";
   };
 
   useEffect(() => {
-    toggleOnlineOptions();
-  }, []);
+    if (assignment) toggleOnlineOptions();
+  }, [assignment]);
 
-  // ✅ Submit handler with redirect
+  const formatDateTimeLocal = (d: string | Date) => {
+    const date = new Date(d);
+    const pad = (n: number) => String(n).padStart(2, "0");
+    const year = date.getFullYear();
+    const month = pad(date.getMonth() + 1);
+    const day = pad(date.getDate());
+    const hours = pad(date.getHours());
+    const minutes = pad(date.getMinutes());
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Add saving logic here if needed
+    if (!assignment) return;
+
+    const stored = JSON.parse(localStorage.getItem("assignments") || "[]");
+    const updated = stored.map((a: any) => {
+      if (a._id !== id) return a;
+
+      // Get selected online submission detail
+      const onlineDetailInput = document.querySelector<HTMLInputElement>(
+        'input[name="onlineDetail"]:checked'
+      );
+
+      return {
+        ...a,
+        title: (document.getElementById("wd-name") as HTMLInputElement).value,
+        description: (document.getElementById("wd-description") as HTMLTextAreaElement).value,
+        assignTo: (document.getElementById("wd-assignTo") as HTMLInputElement).value,
+        points: parseInt((document.getElementById("wd-points") as HTMLInputElement).value),
+        grade: (document.getElementById("wd-grade") as HTMLSelectElement).value,
+        dueDate: (document.getElementById("wd-dueDate") as HTMLInputElement).value,
+        availableFrom: (document.getElementById("wd-availableFrom") as HTMLInputElement).value,
+        availableUntil: (document.getElementById("wd-availableUntil") as HTMLInputElement).value,
+        module: (document.getElementById("wd-group") as HTMLSelectElement).value,
+        submissionType: (document.getElementById("wd-submissionType") as HTMLSelectElement).value,
+        onlineDetail: onlineDetailInput?.value || "",
+      };
+    });
+
+    localStorage.setItem("assignments", JSON.stringify(updated));
     router.push(`/Courses/${cid}/Assignments`);
   };
 
+  if (!assignment) return <div className="p-6">Loading assignment...</div>;
+
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-xl">
-      {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">➕ Add New Assignment</h2>
+        <h2 className="text-2xl font-bold text-gray-800">✏️ Edit Assignment</h2>
         <Link href={`/Courses/${cid}/Assignments`}>
           <span className="text-blue-600 hover:underline cursor-pointer">Back to Assignments</span>
         </Link>
@@ -55,17 +84,16 @@ export default function AddAssignment() {
       <form className="space-y-6" onSubmit={handleSubmit}>
         {/* Assignment Group */}
         <div className="flex flex-col">
-          <label htmlFor="wd-group" className="font-medium text-gray-700 mb-1">
-            Assignment Group
-          </label>
+          <label htmlFor="wd-group" className="font-medium text-gray-700 mb-1">Assignment Group</label>
           <select
             id="wd-group"
             className="border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            defaultValue={assignment.module}
           >
             <option value="" disabled>Select a group</option>
-            <option value="group1">Group 1 – Basics</option>
-            <option value="group2">Group 2 – Intermediate</option>
-            <option value="group3">Group 3 – Advanced</option>
+            <option value="Group 1 – Basics">Group 1 – Basics</option>
+            <option value="Group 2 – Intermediate">Group 2 – Intermediate</option>
+            <option value="Group 3 – Advanced">Group 3 – Advanced</option>
           </select>
         </div>
 
@@ -75,7 +103,7 @@ export default function AddAssignment() {
           <input
             id="wd-assignTo"
             type="text"
-            defaultValue="Default Group"
+            defaultValue={assignment.assignTo || "Default Group"}
             className="border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
         </div>
@@ -88,6 +116,8 @@ export default function AddAssignment() {
             type="text"
             placeholder="e.g. A1 - ENV + HTML"
             className="border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            defaultValue={assignment.title}
+            required
           />
         </div>
 
@@ -99,10 +129,11 @@ export default function AddAssignment() {
             rows={4}
             placeholder="Assignment instructions or description..."
             className="border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            defaultValue={assignment.description}
           />
         </div>
 
-        {/* Submission Type Dropdown */}
+        {/* Submission Type */}
         <div className="flex flex-col mt-4">
           <label htmlFor="wd-submissionType" className="font-medium text-gray-700 mb-1">Submission Type</label>
           <select
@@ -110,6 +141,7 @@ export default function AddAssignment() {
             ref={submissionTypeRef}
             className="border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
             onChange={toggleOnlineOptions}
+            defaultValue={assignment.submissionType}
           >
             <option value="" disabled>Select submission type</option>
             <option value="online-entry">Online Entry</option>
@@ -118,13 +150,19 @@ export default function AddAssignment() {
           </select>
         </div>
 
-        {/* Conditional Online Entry Radio Buttons */}
-        <div id="online-options" hidden className="flex flex-col mt-4">
+        {/* Conditional Online Entry */}
+        <div id="online-options" className="flex flex-col mt-4" hidden>
           <label className="font-medium text-gray-700 mb-2">Online Submission Method</label>
           <div className="space-y-1">
             {["Text Entry", "File Upload", "Website URL", "External Tool"].map((type) => (
               <label key={type} className="inline-flex items-center space-x-2">
-                <input type="radio" name="onlineDetail" value={type} className="form-radio" />
+                <input
+                  type="radio"
+                  name="onlineDetail"
+                  value={type}
+                  className="form-radio"
+                  defaultChecked={assignment.onlineDetail === type}
+                />
                 <span>{type}</span>
               </label>
             ))}
@@ -140,7 +178,7 @@ export default function AddAssignment() {
                 <input
                   id="wd-points"
                   type="number"
-                  defaultValue={100}
+                  defaultValue={assignment.points}
                   className="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </td>
@@ -152,6 +190,7 @@ export default function AddAssignment() {
                 <select
                   id="wd-grade"
                   className="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  defaultValue={assignment.grade || ""}
                 >
                   <option value="" disabled>Select grade</option>
                   <option value="A">A</option>
@@ -169,7 +208,7 @@ export default function AddAssignment() {
                 <input
                   id="wd-dueDate"
                   type="datetime-local"
-                  defaultValue={formatDateTimeLocal(defaultDueDate)}
+                  defaultValue={formatDateTimeLocal(assignment.dueDate)}
                   className="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </td>
@@ -181,7 +220,7 @@ export default function AddAssignment() {
                 <input
                   id="wd-availableFrom"
                   type="date"
-                  defaultValue={formatDateTimeLocal(defaultAvailableFrom).slice(0, 10)}
+                  defaultValue={assignment.availableFrom}
                   className="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </td>
@@ -193,7 +232,7 @@ export default function AddAssignment() {
                 <input
                   id="wd-availableUntil"
                   type="date"
-                  defaultValue={formatDateTimeLocal(defaultAvailableUntil).slice(0, 10)}
+                  defaultValue={assignment.availableUntil}
                   className="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </td>
@@ -209,7 +248,7 @@ export default function AddAssignment() {
             </button>
           </Link>
           <button type="submit" className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-            Save Assignment
+            Save Changes
           </button>
         </div>
       </form>

@@ -1,31 +1,43 @@
 "use client";
-
 import Link from "next/link";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
-import {
-  FaChevronDown,
-  FaPlus,
-  FaSearch,
-  FaFileAlt,
-} from "react-icons/fa";
+import { FaChevronDown, FaPlus, FaSearch, FaFileAlt, FaEdit, FaTrash } from "react-icons/fa";
 import { IoEllipsisVertical } from "react-icons/io5";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 import ModuleControlButtons from "../Modules/ModuleControlButtons";
 import GreenCheckmark from "../Modules/GreenCheckmark";
-import { assignments } from "../../../Database"; // ✅ correct import
 
 export default function Assignments() {
-  const { cid } = useParams(); // ✅ dynamically get course ID from URL
+  const { cid } = useParams();
+  const router = useRouter();
 
-  // ✅ Filter assignments that belong to the current course
-  const courseAssignments = assignments.filter(a => a.course === cid);
+  const [courseAssignments, setCourseAssignments] = useState<any[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("assignments") || "[]");
+    setCourseAssignments(stored.filter((a: any) => a.course === cid));
+  }, [cid]);
+
+  const filteredAssignments = courseAssignments.filter(a =>
+    a.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleDelete = (_id: string) => {
+    if (!confirm("Are you sure you want to delete this assignment?")) return;
+
+    const stored = JSON.parse(localStorage.getItem("assignments") || "[]");
+    const updated = stored.filter((a: any) => a._id !== _id);
+    localStorage.setItem("assignments", JSON.stringify(updated));
+    setCourseAssignments(updated.filter((a: any) => a.course === cid));
+  };
 
   return (
     <div id="wd-assignments" className="p-4">
       {/* Search bar and buttons */}
       <div className="d-flex justify-content-between align-items-center mb-3">
-        {/* Search input with icon */}
         <div className="input-group w-50">
           <span className="input-group-text bg-white border-end-0">
             <FaSearch className="text-muted" />
@@ -34,15 +46,15 @@ export default function Assignments() {
             type="text"
             className="form-control border-start-0"
             placeholder="Search for Assignments"
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
             style={{ boxShadow: "none" }}
           />
         </div>
 
-        {/* Buttons */}
         <div className="d-flex gap-2">
           <button className="btn btn-light border">+ Group</button>
-          {/* ✅ Dynamic Add Assignment link */}
-          <Link href={`/Courses/${cid}/Assignments/Add`}>
+          <Link href={`/Courses/${cid}/Assignments/add`}>
             <button className="btn btn-danger">+ Assignment</button>
           </Link>
         </div>
@@ -50,7 +62,6 @@ export default function Assignments() {
 
       {/* Assignment Group */}
       <div className="border rounded bg-light">
-        {/* Header */}
         <div className="px-3 py-2 d-flex justify-content-between align-items-center border-bottom">
           <div className="d-flex align-items-center fw-bold text-dark">
             <FaChevronDown className="me-2" />
@@ -59,52 +70,75 @@ export default function Assignments() {
           <div className="d-flex align-items-center gap-3">
             <span className="text-muted small">40% of Total</span>
             <FaPlus className="text-dark" />
-            <ModuleControlButtons moduleId={""} deleteModule={function (moduleId: string): void {
-              throw new Error("Function not implemented.");
-            } } editModule={function (moduleId: string): void {
-              throw new Error("Function not implemented.");
-            } } />
+            <ModuleControlButtons
+              moduleId={""}
+              deleteModule={function (moduleId: string): void {
+                throw new Error("Function not implemented.");
+              }}
+              editModule={function (moduleId: string): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
           </div>
         </div>
 
-        {/* ✅ Assignment Items */}
         <ListGroup className="rounded-0">
-          {courseAssignments.map((assignment, idx) => (
+          {filteredAssignments.map((assignment, idx) => (
             <ListGroupItem
-              key={assignment._id} // ✅ use _id instead of id
+              key={assignment._id} // ✅ Use _id consistently
               className="d-flex justify-content-between align-items-center px-3 py-3 border-bottom border-gray"
               style={{
-                borderLeft: "4px solid green", // only left border green
+                borderLeft: "4px solid green",
                 borderTop: idx === 0 ? "none" : undefined,
               }}
             >
               <div className="d-flex flex-column">
-                <div className="d-flex align-items-center mb-1">
-                  <FaFileAlt className="me-2 text-secondary" />
-                  {/* ✅ Construct the link dynamically using course + assignment IDs */}
+                <div className="d-flex items-center mb-1 gap-2">
+                  <FaFileAlt className="text-secondary" />
                   <Link
                     href={`/Courses/${cid}/Assignments/${assignment._id}`}
                     className="fw-bold text-dark text-decoration-none"
                   >
-                    {assignment.title.split(" - ")[0]}
+                    {assignment.title}
                   </Link>
                 </div>
-                <span className="text-danger small">Multiple Modules</span>
+                <span className="text-danger small">{assignment.module}</span>
                 <span className="text-muted small">
-                  Not available until <strong>{assignment.available}</strong>
+                  Not available until <strong>{assignment.availableFrom}</strong>
                 </span>
                 <span className="text-muted small">
-                  Due <strong>{assignment.due}</strong> | {assignment.points} pts
+                  Due <strong>{assignment.dueDate}</strong> | {assignment.points} pts
                 </span>
               </div>
 
-              {/* Right-side icons */}
-              <div className="d-flex align-items-center gap-3">
+              <div className="d-flex align-items-center gap-2">
+                {/* Edit button */}
+                <button
+                  onClick={() => router.push(`/Courses/${cid}/Assignments/Edit/${assignment._id}`)}
+                  className="px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition flex items-center gap-1"
+                >
+                  <FaEdit /> Edit
+                </button>
+
+                {/* Delete button */}
+                <button
+                  onClick={() => handleDelete(assignment._id)}
+                  className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition flex items-center gap-1"
+                >
+                  <FaTrash /> Delete
+                </button>
+
                 <GreenCheckmark />
                 <IoEllipsisVertical className="fs-4 text-dark" />
               </div>
             </ListGroupItem>
           ))}
+
+          {filteredAssignments.length === 0 && (
+            <div className="p-3 text-center text-muted">
+              No assignments found.
+            </div>
+          )}
         </ListGroup>
       </div>
     </div>

@@ -1,37 +1,47 @@
-"use client";
-import { createSlice } from "@reduxjs/toolkit";
+// app/(Kambaz)/Courses/[cid]/Assignments/reducer.ts
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { assignments as dbAssignments } from "../../../Database";
-import { v4 as uuidv4 } from "uuid";
 
-const initialState = {
-  assignments: dbAssignments, // ✅ Preload existing DB data
+export interface Assignment {
+  _id: string;
+  title: string;
+  description?: string;
+  points?: number;
+  dueDate?: string;
+  availableFrom?: string;
+  availableUntil?: string;
+  course: string;
+}
+
+interface AssignmentsState {
+  assignments: Assignment[];
+}
+
+const initialState: AssignmentsState = {
+  assignments: dbAssignments || [],
 };
 
 const assignmentsSlice = createSlice({
   name: "assignments",
   initialState,
   reducers: {
-    addAssignment: (state, { payload }) => {
-      const newAssignment = {
-        ...payload,
-        _id: uuidv4(), // Unique ID for new assignments
-      };
-      state.assignments = [...state.assignments, newAssignment];
+    addAssignment: (state, action: PayloadAction<Assignment>) => {
+      state.assignments.push(action.payload);
     },
-    deleteAssignment: (state, { payload: assignmentId }) => {
-      state.assignments = state.assignments.filter(
-        (a) => a._id !== assignmentId
+    updateAssignment: (state, action: PayloadAction<Assignment>) => {
+      state.assignments = state.assignments.map((a) =>
+        a._id === action.payload._id ? action.payload : a
       );
     },
-    updateAssignment: (state, { payload }) => {
-      state.assignments = state.assignments.map((a) =>
-        a._id === payload._id ? payload : a
+    deleteAssignment: (state, action: PayloadAction<string>) => {
+      state.assignments = state.assignments.filter(
+        (a) => a._id !== action.payload
       );
     },
   },
 });
 
-export const { addAssignment, deleteAssignment, updateAssignment } =
+export const { addAssignment, updateAssignment, deleteAssignment } =
   assignmentsSlice.actions;
 
 export default assignmentsSlice.reducer;

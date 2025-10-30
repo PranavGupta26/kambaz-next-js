@@ -1,154 +1,185 @@
 "use client";
-
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import assignmentsData from "../../../../Database/assignments.json"; // ✅ Import JSON database
+import { useRef, useEffect } from "react";
+import { useRouter, useParams } from "next/navigation";
 
 export default function AddAssignment() {
-  const { cid } = useParams(); // Get course ID from URL
+  const router = useRouter();
+  const params = useParams();
+  const cid = params.cid as string;
+  const submissionTypeRef = useRef<HTMLSelectElement>(null);
 
-  // Optional: get existing assignments for this course
-  const courseAssignments = assignmentsData.filter((a) => a.course === cid);
+  // Default Dates
+  const now = new Date();
+  const defaultDueDate = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+  const defaultAvailableFrom = new Date();
+  const defaultAvailableUntil = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
+
+  const formatDateTimeLocal = (d: Date) => {
+    const pad = (n: number) => String(n).padStart(2, "0");
+    const year = d.getFullYear();
+    const month = pad(d.getMonth() + 1);
+    const day = pad(d.getDate());
+    const hours = pad(d.getHours());
+    const minutes = pad(d.getMinutes());
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  };
+
+  const toggleOnlineOptions = () => {
+    const onlineDiv = document.getElementById("online-options");
+    if (!submissionTypeRef.current) return;
+    if (onlineDiv) onlineDiv.hidden = submissionTypeRef.current.value !== "online-entry";
+  };
+
+  useEffect(() => {
+    toggleOnlineOptions();
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const newAssignment = {
+      _id: Date.now().toString(), // ✅ changed from id to _id
+      title: (document.getElementById("wd-name") as HTMLInputElement).value,
+      description: (document.getElementById("wd-description") as HTMLTextAreaElement).value,
+      points: parseInt((document.getElementById("wd-points") as HTMLInputElement).value),
+      dueDate: (document.getElementById("wd-dueDate") as HTMLInputElement).value,
+      availableFrom: (document.getElementById("wd-availableFrom") as HTMLInputElement).value,
+      availableUntil: (document.getElementById("wd-availableUntil") as HTMLInputElement).value,
+      module: (document.getElementById("wd-group") as HTMLSelectElement).value,
+      submissionType: (submissionTypeRef.current?.value || ""),
+      course: cid,
+    };
+
+    const stored = JSON.parse(localStorage.getItem("assignments") || "[]");
+    stored.push(newAssignment);
+    localStorage.setItem("assignments", JSON.stringify(stored));
+
+    router.push(`/Courses/${cid}/Assignments`);
+  };
 
   return (
-    <div
-      id="wd-add-assignment"
-      className="max-w-2xl mx-auto p-4 bg-white shadow rounded-3"
-    >
+    <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-xl">
       {/* Header */}
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2 className="h4 fw-bold text-dark">➕ Add New Assignment</h2>
-        <Link
-          href={`/Courses/${cid}/Assignments`}
-          className="text-primary text-decoration-underline"
-        >
-          Back to Assignments
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-bold text-gray-800">➕ Add New Assignment</h2>
+        <Link href={`/Courses/${cid}/Assignments`}>
+          <span className="text-blue-600 hover:underline cursor-pointer">Back to Assignments</span>
         </Link>
       </div>
 
-      {/* Form */}
-      <form>
-        {/* Assignment Title */}
-        <div className="mb-3">
-          <label htmlFor="title" className="form-label">
-            Assignment Title
+      <form className="space-y-6" onSubmit={handleSubmit}>
+        {/* Assignment Group */}
+        <div className="flex flex-col">
+          <label htmlFor="wd-group" className="font-medium text-gray-700 mb-1">
+            Assignment Group
           </label>
-          <input
-            id="title"
-            type="text"
-            placeholder="e.g. Project 1: React Components"
-            className="form-control"
-          />
-        </div>
-
-        {/* Due Date */}
-        <div className="mb-3">
-          <label htmlFor="dueDate" className="form-label">
-            Due Date
-          </label>
-          <input id="dueDate" type="datetime-local" className="form-control" />
-        </div>
-
-        {/* Points and Assignment Group */}
-        <div className="row g-3 mb-3">
-          <div className="col-md-4">
-            <label htmlFor="points" className="form-label">
-              Points
-            </label>
-            <input
-              id="points"
-              type="number"
-              placeholder="e.g. 100"
-              className="form-control"
-            />
-          </div>
-
-          <div className="col-md-8">
-            <label htmlFor="assignmentGroup" className="form-label">
-              Assignment Group
-            </label>
-            <select id="assignmentGroup" className="form-select">
-              <option value="">Select Group</option>
-              <option>Group 1</option>
-              <option>Group 2</option>
-              <option>Group 3</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Display Grade and Submission Type */}
-        <div className="row g-3 mb-3">
-          <div className="col-md-6">
-            <label htmlFor="displayGradeAs" className="form-label">
-              Display Grade as
-            </label>
-            <select id="displayGradeAs" className="form-select">
-              <option value="">Select Option</option>
-              <option>Points</option>
-              <option>Percentage</option>
-              <option>Letter Grade</option>
-            </select>
-          </div>
-
-          <div className="col-md-6">
-            <label htmlFor="submissionType" className="form-label">
-              Submission Type
-            </label>
-            <select id="submissionType" className="form-select">
-              <option value="">Select Type</option>
-              <option>Online</option>
-              <option>Offline</option>
-              <option>Both</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Assign */}
-        <div className="mb-3">
-          <label htmlFor="assign" className="form-label">
-            Assign
-          </label>
-          <select id="assign" className="form-select">
-            <option value="">Select User(s)</option>
-            <option>All Students</option>
-            <option>Group 1</option>
-            <option>Group 2</option>
+          <select id="wd-group" className="border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <option value="" disabled>Select a group</option>
+            <option value="Group 1 – Basics">Group 1 – Basics</option>
+            <option value="Group 2 – Intermediate">Group 2 – Intermediate</option>
+            <option value="Group 3 – Advanced">Group 3 – Advanced</option>
           </select>
         </div>
 
-        {/* Available From */}
-        <div className="mb-3">
-          <label htmlFor="availableFrom" className="form-label">
-            Available From
-          </label>
-          <input id="availableFrom" type="date" className="form-control" />
-        </div>
-
-        {/* Description */}
-        <div className="mb-3">
-          <label htmlFor="description" className="form-label">
-            Description
-          </label>
-          <textarea
-            id="description"
-            rows={4}
-            placeholder="Enter assignment instructions..."
-            className="form-control"
+        {/* Assign To */}
+        <div className="flex flex-col">
+          <label htmlFor="wd-assignTo" className="font-medium text-gray-700 mb-1">Assign To</label>
+          <input
+            id="wd-assignTo"
+            type="text"
+            defaultValue="Default Group"
+            className="border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
           />
         </div>
 
-        {/* Buttons */}
-        <div className="d-flex justify-content-end gap-3 pt-3">
+        {/* Assignment Name */}
+        <div className="flex flex-col">
+          <label htmlFor="wd-name" className="font-medium text-gray-700 mb-1">Assignment Name</label>
+          <input
+            id="wd-name"
+            type="text"
+            placeholder="e.g. A1 - ENV + HTML"
+            className="border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            required
+          />
+        </div>
+
+        {/* Description */}
+        <div className="flex flex-col">
+          <label htmlFor="wd-description" className="font-medium text-gray-700 mb-1">Description</label>
+          <textarea
+            id="wd-description"
+            rows={4}
+            placeholder="Assignment instructions or description..."
+            className="border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
+        </div>
+
+        {/* Submission Type */}
+        <div className="flex flex-col mt-4">
+          <label htmlFor="wd-submissionType" className="font-medium text-gray-700 mb-1">Submission Type</label>
+          <select
+            id="wd-submissionType"
+            ref={submissionTypeRef}
+            className="border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            onChange={toggleOnlineOptions}
+          >
+            <option value="" disabled>Select submission type</option>
+            <option value="online-entry">Online Entry</option>
+            <option value="no-submission">No Submission</option>
+            <option value="on-paper">On Paper</option>
+          </select>
+        </div>
+
+        {/* Conditional Online Entry Radio Buttons */}
+        <div id="online-options" hidden className="flex flex-col mt-4">
+          <label className="font-medium text-gray-700 mb-2">Online Submission Method</label>
+          <div className="space-y-1">
+            {["Text Entry", "File Upload", "Website URL", "External Tool"].map((type) => (
+              <label key={type} className="inline-flex items-center space-x-2">
+                <input type="radio" name="onlineDetail" value={type} className="form-radio" />
+                <span>{type}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* Points, Dates */}
+        <table className="w-full border-collapse mt-2">
+          <tbody>
+            <tr className="border-b">
+              <td className="pr-4 py-2 text-right font-medium">Points</td>
+              <td className="py-2">
+                <input id="wd-points" type="number" defaultValue={100} className="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"/>
+              </td>
+            </tr>
+            <tr className="border-b">
+              <td className="pr-4 py-2 text-right font-medium">Due Date</td>
+              <td className="py-2">
+                <input id="wd-dueDate" type="datetime-local" defaultValue={formatDateTimeLocal(defaultDueDate)} className="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"/>
+              </td>
+            </tr>
+            <tr className="border-b">
+              <td className="pr-4 py-2 text-right font-medium">Available From</td>
+              <td className="py-2">
+                <input id="wd-availableFrom" type="date" defaultValue={formatDateTimeLocal(defaultAvailableFrom).slice(0,10)} className="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"/>
+              </td>
+            </tr>
+            <tr className="border-b">
+              <td className="pr-4 py-2 text-right font-medium">Available Until</td>
+              <td className="py-2">
+                <input id="wd-availableUntil" type="date" defaultValue={formatDateTimeLocal(defaultAvailableUntil).slice(0,10)} className="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"/>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div className="flex justify-end space-x-3 pt-4">
           <Link href={`/Courses/${cid}/Assignments`}>
-            <button type="button" className="btn btn-outline-secondary">
-              Cancel
-            </button>
+            <button type="button" className="px-5 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition">Cancel</button>
           </Link>
-          <Link href={`/Courses/${cid}/Assignments`}>
-            <button type="submit" className="btn btn-primary">
-              Save Assignment
-            </button>
-          </Link>
+          <button type="submit" className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Save Assignment</button>
         </div>
       </form>
     </div>
