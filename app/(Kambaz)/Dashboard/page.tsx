@@ -41,9 +41,14 @@ export default function Dashboard() {
 
   const isFaculty = currentUser?.role === "FACULTY";
 
-  const toggleEnrollments = (e: SyntheticEvent) => {
+  const showAllEnrollments = (e: SyntheticEvent) => {
     e.preventDefault();
-    setShowAll((prev) => !prev);
+    setShowAll(true);
+  };
+
+  const showMyEnrollments = (e: SyntheticEvent) => {
+    e.preventDefault();
+    setShowAll(false);
   };
 
   const isEnrolled = (courseId: string) =>
@@ -123,14 +128,19 @@ export default function Dashboard() {
     } else fetchCourses();
     fetchAllEnrollments();
   }, [currentUser, showAll]);
-
   return (
     <div id="wd-dashboard">
       <div className="d-flex justify-content-between align-items-center">
         <h1 id="wd-dashboard-title">Dashboard</h1>
-        <Button variant="primary" onClick={toggleEnrollments}>
-          Enrollments
-        </Button>
+        {showAll ? (
+          <Button variant="primary" onClick={showMyEnrollments}>
+            My Courses
+          </Button>
+        ) : (
+          <Button variant="primary" onClick={showAllEnrollments}>
+            All Courses
+          </Button>
+        )}
       </div>
       <hr />
 
@@ -232,7 +242,7 @@ export default function Dashboard() {
                       </>
                     )}
 
-                    {currentUser?._id && (
+                    {currentUser?._id && showAll && (
                       <div className="mt-2">
                         <Button
                           variant={enrolled ? "danger" : "success"}

@@ -6,13 +6,7 @@ import LessonControlButtons from "./LessonControlButtons";
 import ModuleControlButtons from "./ModuleControlButtons";
 import { BsGripVertical } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import {
-  addModule,
-  editModule,
-  updateModule,
-  deleteModule,
-  setModules,
-} from "./reducer";
+import { editModule, updateModule, setModules } from "./reducer";
 import { useSelector, useDispatch } from "react-redux";
 import * as client from "../../client";
 
@@ -20,6 +14,8 @@ export default function Modules() {
   const { cid } = useParams();
   const [moduleName, setModuleName] = useState("");
   const { modules } = useSelector((state: any) => state.modulesReducer);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+
   const dispatch = useDispatch();
 
   const fetchModules = async () => {
@@ -34,12 +30,12 @@ export default function Modules() {
     dispatch(setModules([...modules, module]));
   };
   const onRemoveModule = async (moduleId: string) => {
-    await client.deleteModule(moduleId);
+    await client.deleteModule(cid as string, moduleId);
     dispatch(setModules(modules.filter((m: any) => m._id !== moduleId)));
   };
 
   const onUpdateModule = async (module: any) => {
-    await client.updateModule(module);
+    await client.updateModule(cid as string, module);
     const newModules = modules.map((m: any) =>
       m._id === module._id ? module : m
     );
@@ -50,25 +46,20 @@ export default function Modules() {
     fetchModules();
   }, []);
 
+  const isFaculty = currentUser?.role === "FACULTY";
+
   return (
     <div>
-      {/* Implement Collapse All button, View Progress button, etc. */}
       <ModulesControls
         moduleName={moduleName}
         setModuleName={setModuleName}
         addModule={onCreateModuleForCourse}
+        isFaculty={isFaculty}
       />
       <br />
       <br />
       <br />
       <br />
-      {/* <button className="wd-action-button">Collapse All</button>&nbsp;
-      <button className="wd-action-button">View Progress</button>&nbsp;
-      <select id="wd-select-one-genre">
-        <option value="PUBLISH_ALL">Publish All</option>
-      </select>
-      &nbsp;
-      <button className="wd-create-module-button">+ Module</button> */}
       <ListGroup id="wd-modules" className="rounded-0">
         {modules.map((module: any) => (
           <ListGroupItem
@@ -96,14 +87,15 @@ export default function Modules() {
                   />
                 )}
               </span>
-
-              <ModuleControlButtons
-                moduleId={module._id}
-                deleteModule={(moduleId) => {
-                  onRemoveModule(moduleId);
-                }}
-                editModule={(moduleId) => dispatch(editModule(moduleId))}
-              />
+              {isFaculty && (
+                <ModuleControlButtons
+                  moduleId={module._id}
+                  deleteModule={(moduleId) => {
+                    onRemoveModule(moduleId);
+                  }}
+                  editModule={(moduleId) => dispatch(editModule(moduleId))}
+                />
+              )}
             </div>
             {module.lessons && (
               <ListGroup className="wd-lessons rounded-0">

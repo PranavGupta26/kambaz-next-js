@@ -3,11 +3,12 @@ import Link from "next/link";
 export default function Lab1() {
   return (
     <div id="wd-lab1">
-      <h1>Name - Pranav Gupta</h1>
+      <h1>Name - Aryan Navin Shetty</h1>
+      <h2>Section: 05 | CRN: 19730 </h2>
       <h3>
         Source Code:&nbsp;
         <Link
-          href="https://github.com/PranavGupta26/kambaz-next-js"
+          href="https://github.com/AryanShettyNEU/kambaz-next-js-cs5610-fa25-05"
           id="wd-lab3-link"
         >
           Github
@@ -87,14 +88,14 @@ export default function Lab1() {
         <ul id="wd-my-books">
           <li>Dune</li>
           <li>Lord of the Rings</li>
-          <li>Dune</li>
+          <li>Ender&apos;s Game</li>
           <li>Red Mars</li>
-          <li>John Wick</li>
+          <li>The Forever War</li>
         </ul>
         Your favorite books (in no particular order)
         <ul id="wd-your-books">
-          <li>harry potter</li>
-          <li>harry potter</li>
+          <li>Panchatantra</li>
+          <li>Charlotte&apos;s Web</li>
           <li>Harry Potter</li>
         </ul>
       </div>

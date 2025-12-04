@@ -14,6 +14,7 @@ interface AssignmentListItemProps {
   cid: string;
   onDeleteAssignment: (id: string) => void;
   onUpdateAssignment: (id: string) => void;
+  isFaculty: boolean;
 }
 
 const AssignmentListItem: React.FC<AssignmentListItemProps> = ({
@@ -26,17 +27,20 @@ const AssignmentListItem: React.FC<AssignmentListItemProps> = ({
   cid,
   onDeleteAssignment,
   onUpdateAssignment,
+  isFaculty,
 }) => {
   return (
     <ListGroupItem className="wd-assignment p-3 ps-1 d-flex align-items-center">
       <div className="d-flex flex-row">
         <BsGripVertical className="me-3 fs-3 text-secondary" />
-        <BsPencilSquare
-          className="me-3 mt-1 fs-5 text-success"
-          onClick={() => {
-            onUpdateAssignment(aid);
-          }}
-        />
+        {isFaculty && (
+          <BsPencilSquare
+            className="me-3 mt-1 fs-5 text-success"
+            onClick={() => {
+              onUpdateAssignment(aid);
+            }}
+          />
+        )}
       </div>
 
       <div className="flex-grow-1 d-flex align-items-start">
@@ -57,12 +61,13 @@ const AssignmentListItem: React.FC<AssignmentListItemProps> = ({
           </p>
         </div>
       </div>
-
-      <LessonControlButtons
-        onDeleteAssignment={() => {
-          onDeleteAssignment(aid);
-        }}
-      />
+      {isFaculty && (
+        <LessonControlButtons
+          onDeleteAssignment={() => {
+            onDeleteAssignment(aid);
+          }}
+        />
+      )}
     </ListGroupItem>
   );
 };

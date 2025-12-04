@@ -33,6 +33,7 @@ export default function Edit() {
     dispatch(setAssignments(newAssignments));
     redirectBack(e);
   };
+  console.log(assignment);
 
   useEffect(() => {
     setAssignment(

@@ -25,6 +25,9 @@ export default function Assignments() {
   const { cid } = useParams();
 
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+
+  const isFaculty = currentUser?.role === "FACULTY";
 
   const dispatch = useDispatch();
 
@@ -83,18 +86,20 @@ export default function Assignments() {
             <BsPlusLg />
             Group
           </Button>
-          <Button
-            variant="danger"
-            size="lg"
-            className="me-1 rounded-2"
-            id="wd-add-assignment"
-            onClick={() => {
-              redirect("./Assignments/New");
-            }}
-          >
-            <BsPlusLg />
-            <span className="fw-bold">Assignment</span>
-          </Button>
+          {isFaculty && (
+            <Button
+              variant="danger"
+              size="lg"
+              className="me-1 rounded-2"
+              id="wd-add-assignment"
+              onClick={() => {
+                redirect("./Assignments/New");
+              }}
+            >
+              <BsPlusLg />
+              <span className="fw-bold">Assignment</span>
+            </Button>
+          )}
         </div>
       </div>
       <ListGroup id="wd-modules" className="rounded-0">
@@ -115,6 +120,7 @@ export default function Assignments() {
               {...rest}
               onDeleteAssignment={onRemoveAssignment}
               onUpdateAssignment={onUpdateAssignment}
+              isFaculty={isFaculty}
             />
           ))}
         </ListGroupItem>
