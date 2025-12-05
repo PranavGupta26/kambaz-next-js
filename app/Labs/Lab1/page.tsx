@@ -3,12 +3,12 @@ import Link from "next/link";
 export default function Lab1() {
   return (
     <div id="wd-lab1">
-      <h1>Name - Aryan Navin Shetty</h1>
-      <h2>Section: 05 | CRN: 19730 </h2>
+      <h1>Name - Pranav Gupta</h1>
+      <h2></h2>
       <h3>
         Source Code:&nbsp;
         <Link
-          href="https://github.com/AryanShettyNEU/kambaz-next-js-cs5610-fa25-05"
+          href="https://github.com/PranavGupta26/kambaz-next-js/tree/test"
           id="wd-lab3-link"
         >
           Github
