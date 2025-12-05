@@ -63,7 +63,7 @@ export default function TOC() {
       </NavItem>
       <NavItem>
         <NavLink href="/" as={Link}>
-          Kambaz
+          Kambaz Application
         </NavLink>
       </NavItem>
       <NavItem>
